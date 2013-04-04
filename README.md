@@ -1,4 +1,4 @@
 AndroidCassandra
 ================
 
-Android App using Cassandra
+Crowd-sourced deal finding app for Android that uses Apache Cassandra

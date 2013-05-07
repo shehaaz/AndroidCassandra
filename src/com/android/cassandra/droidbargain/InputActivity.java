@@ -1,5 +1,7 @@
 package com.android.cassandra.droidbargain;
 
+import java.util.Calendar;
+
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
 
@@ -31,6 +33,12 @@ public class InputActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_input);
+		
+		Calendar c = Calendar.getInstance();
+		c.getTimeInMillis();
+		
+		
+		System.out.println("Time in Milliseconds "+c.getTimeInMillis());
 
 
 

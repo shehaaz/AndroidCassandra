@@ -1,0 +1,15 @@
+Creating a user:
+$ curl -X put http://198.61.177.186:8080/virgil/data/android/users/1/profile -d  "{\"name\":\"shehaaz\",\"email\":\"shehaaz@gmail.com\"}"
+
+
+
+
+Posts
+
+Lenovo@Lenovo-PC ~
+$ curl -X put http://198.61.177.186:8080/virgil/data/android/users/1/2 -d "{\"pid\":\"2\",\"timestamp\":\"1367132025\",\"title\":\"AWESOME HEADPHONES\",\"body\":\"DROP EVERYTHING AND GO TO BESTBUY\",\"price\":\"40\"}"
+
+Lenovo@Lenovo-PC ~
+$ curl -X put http://198.61.177.186:8080/virgil/data/android/users/1/1 -d "{\"pid\":\"1\",\"timestamp\":\"1367132021\",\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\"}"  
+
+

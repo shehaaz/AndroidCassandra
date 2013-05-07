@@ -1,0 +1,5 @@
+recap:
+
+Virgil gave me REST Access by wrapping around cassandra DB
+with a dashboard
+used loopj to communicate with Virgil

@@ -1,0 +1,77 @@
+http://198.61.177.186:8080/virgil/data/keyspace/columnfamily/rowkey
+
+First create the column family. Then create rowkey and a column inside the rowkey. A rowkey is always created with a column_name
+Then add the value to the column_name
+
+
+
+//Create a User
+users
+
+	row_key		name	email		
+	uid			
+	
+//Making a Post (pushes to collumn_families: posts, posts_by_users and posts_by_location)
+	
+posts
+
+	row_key		title	body	location	LngLat
+	Timestamp	
+
+>>>requests.put("http://198.61.177.186:8080/virgil/data/android/posts/1367787957","{\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\",\"location\":\"Forever 21\",\"latlng\":\"45.49806|-73.57506\"}");
+	
+
+
+posts_by_user
+
+	row_key			Timestamp
+	uid				{Json Post}
+	
+>>>requests.put("http://198.61.177.186:8080/virgil/data/android/posts_by_user/1/1367787957","{\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\",\"location\":\"Forever 21\",\"latlng\":\"45.49806|-73.57506\"}");
+
+
+posts_by_location
+
+	row_key			Timestamp
+	LngLat			{Json Post}
+	
+>>>requests.put("http://198.61.177.186:8080/virgil/data/android/posts_by_location/45.49806|-73.57506/1367787957","{\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\",\"location\":\"Forever 21\",\"latlng\":\"45.49806|-73.57506\"}");
+
+	
+//This is triggered when a user likes a post	
+posts_liked_by_user
+
+	row_key			Timestamp(time when the user liked the post)
+	uid				{Json Post}
+
+>>>requests.put("http://198.61.177.186:8080/virgil/data/android/posts_liked_by_user/1/1367793346","{\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\",\"location\":\"Forever 21\",\"latlng\":\"45.49806|-73.57506\"}");
+	
+
+
+	
+
+---------
+Making a posts
+
+	Push to: 
+			posts
+			posts_by_user
+			posts_near_user
+
+Liking a Post:
+
+	Push to: 
+			posts_liked_by_user
+	
+
+Creating latest Newsfeed for user
+
+	1- Query Google Places and store in data structure all the nearby locations
+	2- Get Users LngLat (users location)
+	3- determine lng and lat range that is appropriate (+=0.5)
+	4- Find stores that are within that range
+	5- do a GET with their LatLng to http://SERVER_END_POINT/virgil/data/android/posts_near_user/LatLng
+	6- If there are successful queries get the JSON POST objects sorted by Timestamp
+	7- Construct and display the posts on the user's newfeed.
+	
+

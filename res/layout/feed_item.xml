@@ -1,42 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/nowCardStyle"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    style="@style/nowCardStyle">
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/person_feed_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="4dip"
-            android:paddingTop="8dip"
-            android:text="test"
-            android:paddingLeft="8dip"
-            android:textSize="20sp"
-            android:textStyle="bold" 
-            android:fontFamily="sans-serif-light" />
-
-    </TableRow>
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
 
     <TextView
+        android:id="@+id/feed_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="6dip"
-        android:paddingLeft="125dip"
-        android:text="test"
-        android:textSize="12sp" />
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-light"
+        android:text="Title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/feed_data_title"
-        android:layout_width="fill_parent"
+        android:id="@+id/feed_desc"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/feed_title"
+        android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-condensed"
-        android:paddingBottom="6dip"
-        android:paddingLeft="180dip"
-        android:text="test"
+        android:text="DESCRIPTION"
         android:textSize="18sp" />
-    
-</TableLayout>
+
+</RelativeLayout>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -55,31 +56,29 @@ public class InputActivity extends Activity {
 		buttonDB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				try {
-					
-					user = new User(usernameEditText.getText().toString(), emailEditText.getText().toString());
-
-					AsyncHttpClient client = new AsyncHttpClient();
-					JSONObject jsonParams = new JSONObject();
-
-					jsonParams.put(user.getAttName(), user.getName());
-					jsonParams.put(user.getAttEmail(), user.getEmail());
-					StringEntity entity = new StringEntity(jsonParams.toString());
-					System.out.println(jsonParams.toString());
-
-					client.put(context,"http://198.61.177.186:8080/virgil/data/android/users/5",entity,null,new AsyncHttpResponseHandler() {
-						@Override
-						public void onSuccess(String response) {
-							System.out.println("Success HTTP PUT");
-						}
-					});
-
-				} catch (Exception e) {
-					System.out.println("Failed HTTP PUT");
-				} 
-
-
+//
+//				try {
+//					
+//					user = new User(usernameEditText.getText().toString(), emailEditText.getText().toString());
+//
+//					AsyncHttpClient client = new AsyncHttpClient();
+//					JSONObject jsonParams = new JSONObject();
+//
+//					jsonParams.put(user.getAttName(), user.getName());
+//					jsonParams.put(user.getAttEmail(), user.getEmail());
+//					StringEntity entity = new StringEntity(jsonParams.toString());
+//					System.out.println(jsonParams.toString());
+//
+//					client.put(context,"http://198.61.177.186:8080/virgil/data/android/users/5",entity,null,new AsyncHttpResponseHandler() {
+//						@Override
+//						public void onSuccess(String response) {
+//							System.out.println("Success HTTP PUT");
+//						}
+//					});
+//
+//				} catch (Exception e) {
+//					System.out.println("Failed HTTP PUT");
+//				} 
 
 
 
@@ -88,16 +87,19 @@ public class InputActivity extends Activity {
 
 
 
+				Toast.makeText(getApplicationContext(), "msg msg", Toast.LENGTH_LONG).show();
 
 
-				//		        AsyncHttpClient client = new AsyncHttpClient();
-				//
-				//		        client.get("http://198.61.177.186:8080/virgil/data/android/users/1", new AsyncHttpResponseHandler() {
-				//		            @Override
-				//		            public void onSuccess(String response) {
-				//		                System.out.println(response);
-				//		            }
-				//		        });		        
+
+						        AsyncHttpClient client = new AsyncHttpClient();
+				
+						        client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_location/45.49806%7C-73.57506", new AsyncHttpResponseHandler() {
+						            @Override
+						            public void onSuccess(String response) {
+						                System.out.println(response);
+						                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+						            }
+						        });		        
 
 
 			}

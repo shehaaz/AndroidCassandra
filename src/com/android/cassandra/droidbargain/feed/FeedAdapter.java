@@ -1,5 +1,7 @@
 package com.android.cassandra.droidbargain.feed;
 
+import java.util.ArrayList;
+
 import com.android.cassandra.droidbargain.R;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,46 +14,46 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 	
 	Context context;
 	int layoutResourceId;
-	FeedFactory feedFactory[]=null;
+	ArrayList<FeedFactory> feedFactory;
 
 	public FeedAdapter(Context context, int textViewResourceId,
-			FeedFactory[] feedFactory) {
-		super(context, textViewResourceId, feedFactory);
+			ArrayList<FeedFactory> feed_data) {
+		super(context, textViewResourceId, feed_data);
 		
 		this.context = context;
 		this.layoutResourceId = textViewResourceId;
-		this.feedFactory = feedFactory;
+		this.feedFactory = feed_data;
 	}
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent){
 		View row = convertView;
-		WireHolder holder = null;
+		FeedHolder holder = null;
 
 		if(row == null){
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			row = inflater.inflate(layoutResourceId, parent, false);
 
-			holder = new WireHolder();
-			holder.dataTitle = (TextView) row.findViewById(R.id.feed_data_title);
-			holder.personName = (TextView) row.findViewById(R.id.person_feed_name);
+			holder = new FeedHolder();
+			holder.title = (TextView) row.findViewById(R.id.feed_title);
+			holder.desc = (TextView) row.findViewById(R.id.feed_desc);
 
 			row.setTag(holder);
 		}
 		else{
-			holder = (WireHolder)row.getTag();
+			holder = (FeedHolder)row.getTag();
 		}
 		//For every item in the list. set Title, address and rating
-		FeedFactory feed = feedFactory[position];
-		holder.personName.setText(feed.getUser());
-		holder.dataTitle.setText(feed.getData());
+		FeedFactory feed = feedFactory.get(position);
+		holder.title.setText(feed.getTitle());
+		holder.desc.setText(feed.getDesc());
 
 		return row;
 	}
 
-	static class WireHolder{
-		TextView dataTitle;
-		TextView personName;
+	static class FeedHolder{
+		TextView title;
+		TextView desc;
 	}
 
 }

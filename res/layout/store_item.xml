@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/title_store"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/list_venue_arrow" />
+
+    <TextView
+        android:id="@+id/title_store"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toLeftOf="@+id/imageView1"
+        android:text="@string/list_title_store"
+        android:textColor="#040404"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+</RelativeLayout>

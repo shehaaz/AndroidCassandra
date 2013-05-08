@@ -4,6 +4,17 @@
     <string name="app_name">Bargain</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_input">InputActivity</string>
+    <string name="title_activity_input"></string>
+    <string name="open_profile">Open Profile</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="open_stores">Open Stores</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_liked_deals">Fav\'ed Deals</string>
+    <string name="title_activity_stores">Stores</string>
+    <string name="list_title_store">La Maison Simons</string>
+    <string name="title_activity_store">StoreActivity</string>
+    <string name="title_store_profile">Store Profile</string>
+    <string name="title_store_deals">Deals</string>
 
 </resources>

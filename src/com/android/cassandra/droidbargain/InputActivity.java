@@ -32,6 +32,7 @@ public class InputActivity extends Activity {
 	private Spinner mySpinner;
 	private String storeID;
 	private String timestamp;
+	private String location;
 	private Calendar calendar;
 
 	@Override
@@ -64,6 +65,7 @@ public class InputActivity extends Activity {
 	                //Toast.makeText(Main.this, "ID: " + user.getId() + "\nName: " + user.getName(),
 	                    //Toast.LENGTH_SHORT).show();
 	                storeID = store.getStoreID();
+	                location = store.getStoreTitle();
 	               
 	            }
 	            @Override
@@ -82,6 +84,7 @@ public class InputActivity extends Activity {
 					timestamp = String.valueOf(calendar.getTimeInMillis());
 					jsonParams.put("title", title.getText().toString());
 					jsonParams.put("desc", desc.getText().toString());
+					jsonParams.put("location", location);
 					StringEntity entity = new StringEntity(jsonParams.toString());
 					System.out.println(jsonParams.toString());
 

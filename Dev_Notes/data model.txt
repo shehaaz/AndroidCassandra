@@ -47,6 +47,11 @@ posts_liked_by_user
 >>>requests.put("http://198.61.177.186:8080/virgil/data/android/posts_liked_by_user/1/1367793346","{\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\",\"location\":\"Forever 21\",\"latlng\":\"45.49806|-73.57506\"}");
 	
 
+>>> requests.put("http://198.61.177.186:8080/virgil/data/android/posts/ca096a94ec212fccb0f9d2c6ea1496b4e36b6418/1367787957","{\"title\":\"OMG THESE Jeans are AMAZING\",\"body\":\"I found these amazing Jeans on sale at H&M for only 20 bucks\",\"price\":\"20\",\"location\":\"Urban Outfitters\"}");
+
+
+requests.put("http://198.61.177.186:8080/virgil/data/android/posts/61c11aef1e6f06ad8ac84f1231d269f5cfefee7d/1367787960","{\"title\":\"Free Macbook\",\"body\":\"Just kidding\",\"price\":\"0\",\"location\":\"Apple Store\"}");
+
 
 	
 

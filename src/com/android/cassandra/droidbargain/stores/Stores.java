@@ -17,7 +17,7 @@ import com.android.cassandra.droidbargain.feed.FeedActivity;
 
 public class Stores extends ListActivity {
 
-	ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
+	ArrayList<StoreFactory> store_data;
 
 
 
@@ -28,9 +28,9 @@ public class Stores extends ListActivity {
 
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		
+		store_data = FeedActivity.store_data;
 
-		store_data.add(new StoreFactory("Forever 21"));
-		store_data.add(new StoreFactory("La Maison Simons"));
 
 		StoreAdapter adapter = new StoreAdapter(this,R.layout.store_item,store_data);
 		setListAdapter(adapter);

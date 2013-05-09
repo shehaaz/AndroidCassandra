@@ -25,30 +25,25 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class InputActivity extends Activity {
 
-	private User user;
 	private Context context;
-	private EditText usernameEditText;
-	private EditText emailEditText;
+	private EditText title;
+	private EditText desc;
 	private SpinAdapter adapter;
 	private Spinner mySpinner;
+	private String storeID;
+	private String timestamp;
+	private Calendar calendar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_input);
 		
-		Calendar c = Calendar.getInstance();
-		c.getTimeInMillis();
+		calendar = Calendar.getInstance();
 		
-		
-		System.out.println("Time in Milliseconds "+c.getTimeInMillis());
+		title = (EditText) findViewById(R.id.firstname);
+		desc = (EditText) findViewById(R.id.email);
 
-
-
-		usernameEditText = (EditText) findViewById(R.id.firstname);
-		emailEditText = (EditText) findViewById(R.id.email);
-		String lastName = (String) findViewById(R.id.lastname).toString();
-		String age = (String) findViewById(R.id.age).toString();
 
 		context = this.getApplicationContext();
 		//custom Adapter opject: SpinAdapter
@@ -68,6 +63,8 @@ public class InputActivity extends Activity {
 	                // Here you can do the action you want to...
 	                //Toast.makeText(Main.this, "ID: " + user.getId() + "\nName: " + user.getName(),
 	                    //Toast.LENGTH_SHORT).show();
+	                storeID = store.getStoreID();
+	               
 	            }
 	            @Override
 	            public void onNothingSelected(AdapterView<?> adapter) {  }
@@ -78,51 +75,26 @@ public class InputActivity extends Activity {
 		buttonDB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//
-//				try {
-//					
-//					user = new User(usernameEditText.getText().toString(), emailEditText.getText().toString());
-//
-//					AsyncHttpClient client = new AsyncHttpClient();
-//					JSONObject jsonParams = new JSONObject();
-//
-//					jsonParams.put(user.getAttName(), user.getName());
-//					jsonParams.put(user.getAttEmail(), user.getEmail());
-//					StringEntity entity = new StringEntity(jsonParams.toString());
-//					System.out.println(jsonParams.toString());
-//
-//					client.put(context,"http://198.61.177.186:8080/virgil/data/android/users/5",entity,null,new AsyncHttpResponseHandler() {
-//						@Override
-//						public void onSuccess(String response) {
-//							System.out.println("Success HTTP PUT");
-//						}
-//					});
-//
-//				} catch (Exception e) {
-//					System.out.println("Failed HTTP PUT");
-//				} 
 
+				try {
+					AsyncHttpClient client = new AsyncHttpClient();
+					JSONObject jsonParams = new JSONObject();
+					timestamp = String.valueOf(calendar.getTimeInMillis());
+					jsonParams.put("title", title.getText().toString());
+					jsonParams.put("desc", desc.getText().toString());
+					StringEntity entity = new StringEntity(jsonParams.toString());
+					System.out.println(jsonParams.toString());
 
+                           client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts/"+storeID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
+						@Override
+						public void onSuccess(String response) {
+							System.out.println("Success HTTP PUT");
+						}
+					});
 
-
-
-
-
-
-				Toast.makeText(getApplicationContext(), "msg msg", Toast.LENGTH_LONG).show();
-
-
-
-						        AsyncHttpClient client = new AsyncHttpClient();
-				
-						        client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_location/45.49806%7C-73.57506", new AsyncHttpResponseHandler() {
-						            @Override
-						            public void onSuccess(String response) {
-						                System.out.println(response);
-						                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-						            }
-						        });		        
-
+				} catch (Exception e) {
+					System.out.println("Failed HTTP PUT");
+				} 
 
 			}
 		});

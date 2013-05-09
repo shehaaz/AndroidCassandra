@@ -29,6 +29,8 @@ public class InputActivity extends Activity {
 	private Context context;
 	private EditText usernameEditText;
 	private EditText emailEditText;
+	private SpinAdapter adapter;
+	private Spinner mySpinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,28 @@ public class InputActivity extends Activity {
 		String age = (String) findViewById(R.id.age).toString();
 
 		context = this.getApplicationContext();
+		//custom Adapter opject: SpinAdapter
+		adapter = new SpinAdapter(context,android.R.layout.simple_spinner_dropdown_item,FeedActivity().store_data);
+		//Add Spinner to activity_input layout
+		//<Spinner android:id="@+id/miSpinner" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+		mySpinner = (Spinner) findViewById(R.id.miSpinner);
+		mySpinner.setAdapter(adapter);
+		
+		mySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-
+	            @Override
+	            public void onItemSelected(AdapterView<?> adapterView, View view,
+	                    int position, long id) {
+	                // Here you get the current item (a User object) that is selected by its position
+	                StoreFactory store = adapter.getItem(position);
+	                // Here you can do the action you want to...
+	                //Toast.makeText(Main.this, "ID: " + user.getId() + "\nName: " + user.getName(),
+	                    //Toast.LENGTH_SHORT).show();
+	            }
+	            @Override
+	            public void onNothingSelected(AdapterView<?> adapter) {  }
+	        });
+		 
 
 		Button buttonDB = (Button) findViewById(R.id.putindb);
 		buttonDB.setOnClickListener(new OnClickListener() {

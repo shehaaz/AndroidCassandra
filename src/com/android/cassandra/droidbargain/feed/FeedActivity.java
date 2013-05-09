@@ -24,11 +24,20 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-public class FeedActivity extends ListActivity {
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+
+public class FeedActivity extends ListActivity implements LocationListener {
 
 	private Context appContext;
 	private ArrayList<FeedFactory> feed_data = new ArrayList<FeedFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
+	private String userLat;
+	private String userLng;
+	private LocationManager locationManager;
+  	private String provider;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -36,10 +45,26 @@ public class FeedActivity extends ListActivity {
 		setContentView(R.layout.activity_feed);
 
 		appContext = getApplicationContext();
+		
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		
+		Criteria criteria = new Criteria();
+    		provider = locationManager.getBestProvider(criteria, false);
+    		Location location = locationManager.getLastKnownLocation(provider);
+    		
+    		    if (location != null) {
+		      onLocationChanged(location);
+		    } else {
+		    	userLat = "45.495121"
+			userLng = "-73.580314"
+		    }
+		  
+		
+		
 
 		AsyncHttpClient client = new AsyncHttpClient();
 
-		client.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.495121,-73.580314&radius=500&types=book_store%7Cclothing_store%7Celectronics_store%7Cshoe_store%7Cjewelry_store&sensor=true&key=AIzaSyDMtyVzs_11fW_oye9hDLDu0OfPJXskBwg", 
+		client.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+userLat+","+userLng+"&radius=500&types=book_store%7Cclothing_store%7Celectronics_store%7Cshoe_store%7Cjewelry_store&sensor=true&key=AIzaSyDMtyVzs_11fW_oye9hDLDu0OfPJXskBwg", 
 				new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject response) {
@@ -137,5 +162,32 @@ public class FeedActivity extends ListActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	  @Override
+	  public void onLocationChanged(Location location) {
+	    int lat = (int) (location.getLatitude());
+	    int lng = (int) (location.getLongitude());
+	    userLat = String.valueOf(lat);
+	    userLng = String.valueOf(lng);
+	  }
+	
+	  @Override
+	  public void onStatusChanged(String provider, int status, Bundle extras) {
+	    // TODO Auto-generated method stub
+	
+	  }
+	
+	  @Override
+	  public void onProviderEnabled(String provider) {
+	    Toast.makeText(this, "Enabled new provider " + provider,
+	        Toast.LENGTH_SHORT).show();
+	
+	  }
+	
+	  @Override
+	  public void onProviderDisabled(String provider) {
+	    Toast.makeText(this, "Disabled provider " + provider,
+	        Toast.LENGTH_SHORT).show();
+	  }
 
 }

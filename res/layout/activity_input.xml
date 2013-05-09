@@ -9,52 +9,43 @@
     tools:context=".InputActivity" >
 
     <EditText
-        android:id="@+id/firstname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="firstname" />
-
-    <EditText
-        android:id="@+id/lastname"
+        android:id="@+id/post_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="lastname" >
+        android:hint="title"
+        android:inputType="textPersonName" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/age"
+        android:id="@+id/post_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText5"
         android:layout_marginTop="33dp"
-        android:ems="10" 
-        android:hint="age"/>
+        android:ems="10"
+        android:hint="Description" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/post_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="38dp"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/editText5"
+        android:layout_marginTop="33dp"
         android:ems="10"
-        android:inputType="textEmailAddress" 
-        android:hint="email"/>
-        
-    <Spinner android:id="@+id/miSpinner" 
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content">
+        android:hint="Price" />
+
+    <Spinner
+        android:id="@+id/miSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
     </Spinner>
 
     <Button
@@ -64,6 +55,6 @@
         android:layout_below="@+id/editText4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:text="Put In DB" />
+        android:text="Post" />
 
 </TableLayout>

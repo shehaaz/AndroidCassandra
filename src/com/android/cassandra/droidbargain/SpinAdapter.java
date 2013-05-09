@@ -1,9 +1,21 @@
+package com.android.cassandra.droidbargain;
+
+import java.util.ArrayList;
+
+import com.android.cassandra.droidbargain.stores.StoreFactory;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
 public class SpinAdapter extends ArrayAdapter<StoreFactory>{
 
-    // Your sent context
+   
     private Context context;
-    // Your custom values for the spinner (User)
-    private User[] values;
+    private ArrayList<StoreFactory> values;
 
     public SpinAdapter(Context context, int textViewResourceId,
             ArrayList<StoreFactory> values) {
@@ -13,10 +25,10 @@ public class SpinAdapter extends ArrayAdapter<StoreFactory>{
     }
 
     public int getCount(){
-       return values.length;
+       return values.size();
     }
 
-    public User getItem(int position){
+    public StoreFactory getItem(int position){
        return values.get(position);
     }
 
@@ -27,7 +39,7 @@ public class SpinAdapter extends ArrayAdapter<StoreFactory>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-       
+    	       
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
 

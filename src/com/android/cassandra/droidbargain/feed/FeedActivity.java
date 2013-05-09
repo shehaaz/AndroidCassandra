@@ -10,12 +10,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
@@ -23,11 +29,6 @@ import com.android.cassandra.droidbargain.stores.Stores;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
-
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 
 public class FeedActivity extends ListActivity implements LocationListener {
 
@@ -37,7 +38,8 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	private String userLat;
 	private String userLng;
 	private LocationManager locationManager;
-  	private String provider;
+	private String provider;
+	private ProgressDialog pDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -45,20 +47,23 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		setContentView(R.layout.activity_feed);
 
 		appContext = getApplicationContext();
-		
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		
-		Criteria criteria = new Criteria();
-    		provider = locationManager.getBestProvider(criteria, false);
-    		Location location = locationManager.getLastKnownLocation(provider);
-    		
-    		    if (location != null) {
-		      onLocationChanged(location);
-		    } else {
-		    	userLat = "45.495121"
-			userLng = "-73.580314"
-		    }
-		  
+
+		//		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		//
+		//		Criteria criteria = new Criteria();
+		//		provider = locationManager.getBestProvider(criteria, false);
+		//		Location location = locationManager.getLastKnownLocation(provider);
+		//
+		//		if (location != null) {
+		//			onLocationChanged(location);
+		//		} else {
+		//			
+		//		}
+		userLat = "45.495121";
+		userLng = "-73.580314";
+
+		initializeDialog();
+
 		downloadData();
 	}
 
@@ -81,43 +86,51 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			startActivity(new Intent(this, Stores.class));
 			return true;
 		case R.id.open_camera:
-			startActivity(new Intent(this, Profile.class));
+			startActivity(new Intent(this, InputActivity.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	  @Override
-	  public void onLocationChanged(Location location) {
-	    int lat = (int) (location.getLatitude());
-	    int lng = (int) (location.getLongitude());
-	    userLat = String.valueOf(lat);
-	    userLng = String.valueOf(lng);
-	  }
-	
-	  @Override
-	  public void onStatusChanged(String provider, int status, Bundle extras) {
-	    // TODO Auto-generated method stub
-	
-	  }
-	
-	  @Override
-	  public void onProviderEnabled(String provider) {
-	    Toast.makeText(this, "Enabled new provider " + provider,
-	        Toast.LENGTH_SHORT).show();
-	
-	  }
-	
-	  @Override
-	  public void onProviderDisabled(String provider) {
-	    Toast.makeText(this, "Disabled provider " + provider,
-	        Toast.LENGTH_SHORT).show();
-	  }
-	  
-	  private void downloadData(){
-	  	
-	  	AsyncHttpClient googlePlaces_client = new AsyncHttpClient();
+
+	@Override
+	public void onLocationChanged(Location location) {
+		int lat = (int) (location.getLatitude());
+		int lng = (int) (location.getLongitude());
+		userLat = String.valueOf(lat);
+		userLng = String.valueOf(lng);
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		Toast.makeText(this, "Enabled new provider " + provider,
+				Toast.LENGTH_SHORT).show();
+
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		Toast.makeText(this, "Disabled provider " + provider,
+				Toast.LENGTH_SHORT).show();
+	}
+
+	private void initializeDialog() {
+		pDialog = new ProgressDialog(this);
+		pDialog.setMessage("Loading...");
+		pDialog.setIndeterminate(false);
+		pDialog.setCancelable(false);
+		pDialog.show();	
+	}
+
+	private void downloadData(){
+
+		AsyncHttpClient googlePlaces_client = new AsyncHttpClient();
 
 		googlePlaces_client.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+userLat+","+userLng+"&radius=500&types=book_store%7Cclothing_store%7Celectronics_store%7Cshoe_store%7Cjewelry_store&sensor=true&key=AIzaSyDMtyVzs_11fW_oye9hDLDu0OfPJXskBwg", 
 				new JsonHttpResponseHandler() {
@@ -165,7 +178,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 											System.out.println(title + " " +desc+ " " + price + " " + location );
 
 											feed_data.add(new FeedFactory(currentTimestamp, title, desc, price, location));	
-											
+
 										}
 										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
 										setListAdapter(adapter);
@@ -177,18 +190,17 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 							}
 						});
-						
+
 					}
-
+					pDialog.dismiss();
 				}
-
 				catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-	  	
-	  }
+
+	}
 
 }

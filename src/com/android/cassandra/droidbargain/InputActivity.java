@@ -103,6 +103,7 @@ public class InputActivity extends Activity {
 						public void onSuccess(String response) {
 							System.out.println("Success HTTP PUT");
 							Intent i = new Intent(context, FeedActivity.class);
+							i.putExtra("STORE_ID",storeID);
 							startActivity(i);
 						}
 					});

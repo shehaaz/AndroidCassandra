@@ -30,7 +30,7 @@
             android:label="@string/title_activity_profile" >
         </activity>
         <activity
-            android:name="com.android.cassandra.droidbargain.stores.Stores"
+            android:name="com.android.cassandra.droidbargain.stores.StoreList"
             android:label="@string/title_activity_stores" >
         </activity>
         <activity

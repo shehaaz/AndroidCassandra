@@ -24,11 +24,12 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 	private static ViewPager mViewPager;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_store);
-		
+				
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -65,7 +66,7 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 
 		switch(item.getItemId()){
 		case android.R.id.home:
-			Intent upIntent = new Intent(this, FeedActivity.class);
+			Intent upIntent = new Intent(this, StoreList.class);
 			startActivity(upIntent);
 			break;
 		}

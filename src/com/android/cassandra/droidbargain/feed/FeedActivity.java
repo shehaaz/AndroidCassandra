@@ -24,8 +24,9 @@ import android.widget.Toast;
 import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.profile.Profile;
+import com.android.cassandra.droidbargain.stores.StoreActivity;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
-import com.android.cassandra.droidbargain.stores.Stores;
+import com.android.cassandra.droidbargain.stores.StoreList;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -83,7 +84,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			startActivity(new Intent(this, Profile.class));
 			return true;
 		case R.id.open_stores:
-			startActivity(new Intent(this, Stores.class));
+			startActivity(new Intent(this, StoreList.class));
 			return true;
 		case R.id.open_camera:
 			startActivity(new Intent(this, InputActivity.class));
@@ -148,8 +149,8 @@ public class FeedActivity extends ListActivity implements LocationListener {
 						Double lat = Double.parseDouble(location.getString("lat"));
 						Double lng = Double.parseDouble(location.getString("lng"));
 						String address = resultsArray.getJSONObject(i).getString("vicinity");
-						StoreFactory newStore = new StoreFactory(id,name,address,lat,lng);
-						//System.out.println(newStore.toString());
+						final StoreFactory newStore = new StoreFactory(id,name,address,lat,lng);
+
 						store_data.add(newStore);
 
 						AsyncHttpClient cassandra_client = new AsyncHttpClient();
@@ -174,11 +175,9 @@ public class FeedActivity extends ListActivity implements LocationListener {
 											String desc = currentPostObject.getString("body"); 
 											String price = currentPostObject.getString("price");
 											String location = currentPostObject.getString("location");
-
-											System.out.println(title + " " +desc+ " " + price + " " + location );
-
-											feed_data.add(new FeedFactory(currentTimestamp, title, desc, price, location));	
-
+											FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location); 	
+											feed_data.add(currFeedObj);
+											newStore.addDeal(currFeedObj);
 										}
 										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
 										setListAdapter(adapter);

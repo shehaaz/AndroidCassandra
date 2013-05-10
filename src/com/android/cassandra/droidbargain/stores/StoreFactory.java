@@ -2,9 +2,12 @@ package com.android.cassandra.droidbargain.stores;
 
 import java.util.ArrayList;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.android.cassandra.droidbargain.feed.FeedFactory;
 
-public class StoreFactory {
+public class StoreFactory implements Parcelable {
 
 	private String storeTitle;
 	private String storeID;
@@ -23,6 +26,38 @@ public class StoreFactory {
 		lat = pLat;
 		lng = pLng;
 	}
+	
+	public StoreFactory(Parcel source){
+		storeTitle = source.readString();
+		storeID = source.readString();
+		address = source.readString();
+		lat = source.readDouble();
+		lng = source.readDouble();
+		source.readTypedList(deal_data, FeedFactory.CREATOR);	
+	}
+	
+	@Override
+	public void writeToParcel(Parcel dest, int flags){
+		dest.writeString(storeTitle);
+		dest.writeString(storeID);
+		dest.writeString(address);
+		dest.writeDouble(lat);
+		dest.writeDouble(lng);
+		dest.writeList(deal_data);
+	}
+	
+	public static final Creator<StoreFactory> CREATOR = new Creator<StoreFactory>() {
+		
+		@Override
+		public StoreFactory createFromParcel(Parcel source) {
+			return new StoreFactory(source);
+		}
+		
+		@Override
+		public StoreFactory[] newArray(int size){
+			return new StoreFactory[size];
+		}
+	};
 
 	public String getStoreTitle() {
 		return storeTitle;
@@ -44,7 +79,7 @@ public class StoreFactory {
 		return lat;
 	}	
 
-	public void setDeal_data(FeedFactory pDeal) {
+	public void addDeal(FeedFactory pDeal) {
 		deal_data.add(pDeal);
 	}	
 
@@ -54,6 +89,12 @@ public class StoreFactory {
 
 	public String toString(){
 		return storeTitle + " located at " + address;
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

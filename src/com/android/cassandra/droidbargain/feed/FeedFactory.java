@@ -1,6 +1,9 @@
 package com.android.cassandra.droidbargain.feed;
 
-public class FeedFactory {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class FeedFactory implements Parcelable {
 
 
 	private String timeStamp;
@@ -8,7 +11,7 @@ public class FeedFactory {
 	private String desc;
 	private String price;
 	private String location;
-	
+
 
 	public FeedFactory(String timeStamp, String title, String desc,
 			String price, String location)
@@ -27,16 +30,52 @@ public class FeedFactory {
 	public String getTitle(){
 		return title;
 	}
-	
+
 	public String getDesc(){
 		return desc;
 	}
-	
+
 	public String getPrice(){
 		return price;
 	}
-	
+
 	public String getLocation(){
 		return location;
+	}
+
+	public FeedFactory(Parcel source){
+		timeStamp = source.readString();
+		title = source.readString();
+		desc = source.readString();
+		price = source.readString();
+		location = source.readString();
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+
+		dest.writeString(timeStamp);
+		dest.writeString(title);
+		dest.writeString(desc);
+		dest.writeString(price);
+		dest.writeString(location);	
+	}
+
+	public static final Creator<FeedFactory> CREATOR = new Creator<FeedFactory>() {
+
+		public FeedFactory createFromParcel(Parcel source) {
+			return new FeedFactory(source);
+		}
+
+		public FeedFactory[] newArray(int size) {
+			return new FeedFactory[size];
+		}
+	};
+
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

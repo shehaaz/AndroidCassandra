@@ -53,6 +53,7 @@ public class InputActivity extends Activity {
 		price = (EditText) findViewById(R.id.post_price);
 
 
+
 		context = this.getApplicationContext();
 		//custom Adapter opject: SpinAdapter
 		adapter = new SpinAdapter(context,android.R.layout.simple_spinner_item,FeedActivity.store_data);

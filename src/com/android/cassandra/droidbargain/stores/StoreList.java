@@ -47,8 +47,7 @@ public class StoreList extends ListActivity {
 
 		switch(item.getItemId()){
 		case android.R.id.home:
-			Intent upIntent = new Intent(this, FeedActivity.class);
-			startActivity(upIntent);
+			finish();
 			break;
 		}
 		return true;

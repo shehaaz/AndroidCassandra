@@ -1,4 +1,4 @@
-package com.android.cassandra.droidbargain.stores;
+package com.android.cassandra.droidbargain.stores.deals;
 
 import android.support.v4.app.Fragment;
 

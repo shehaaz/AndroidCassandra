@@ -34,7 +34,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 public class FeedActivity extends ListActivity implements LocationListener {
 
 	private Context appContext;
-	private ArrayList<FeedFactory> feed_data = new ArrayList<FeedFactory>();
+	public static ArrayList<FeedFactory> feed_data = new ArrayList<FeedFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
 	private String userLat;
 	private String userLng;
@@ -63,9 +63,16 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		userLat = "45.495121";
 		userLng = "-73.580314";
 
-		initializeDialog();
 
-		downloadData();
+
+		if(!(this.getIntent().hasExtra("STORE_ID"))){
+			initializeDialog();
+			downloadData();
+		}
+		else {
+			String store_id = getIntent().getStringExtra("STORE_ID");
+			downloadNewData(store_id);
+		}
 	}
 
 
@@ -127,6 +134,46 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		pDialog.setIndeterminate(false);
 		pDialog.setCancelable(false);
 		pDialog.show();	
+	}
+
+	private void downloadNewData(String store_id) {
+
+		AsyncHttpClient cassandra_client = new AsyncHttpClient();
+		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store_id,new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(String  response) {
+
+				if(response != null){
+
+					JSONObject jObject;
+					try {
+						jObject = new JSONObject(response);
+
+						Iterator<?> keys = jObject.keys();
+						while(keys.hasNext()){
+							String currentTimestamp = (String) keys.next();
+
+							String postString = jObject.getString(currentTimestamp);
+							JSONObject currentPostObject = new JSONObject(postString);
+
+							String title = currentPostObject.getString("title");
+							String desc = currentPostObject.getString("body"); 
+							String price = currentPostObject.getString("price");
+							String location = currentPostObject.getString("location");
+							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location); 	
+							feed_data.add(currFeedObj);
+						}
+						FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
+						setListAdapter(adapter);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+			}
+		});
+
 	}
 
 	private void downloadData(){

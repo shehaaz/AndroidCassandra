@@ -4,6 +4,7 @@ import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.R.layout;
 import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
+import com.android.cassandra.droidbargain.stores.deals.StoreDealsFragment;
 
 
 import android.os.Bundle;
@@ -66,8 +67,7 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 
 		switch(item.getItemId()){
 		case android.R.id.home:
-			Intent upIntent = new Intent(this, StoreList.class);
-			startActivity(upIntent);
+			finish();
 			break;
 		}
 		return true;

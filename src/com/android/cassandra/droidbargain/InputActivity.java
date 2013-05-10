@@ -5,11 +5,13 @@ import java.util.Calendar;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -45,6 +47,9 @@ public class InputActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_input);
+		
+		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		calendar = Calendar.getInstance();
 		
@@ -105,6 +110,7 @@ public class InputActivity extends Activity {
 							Intent i = new Intent(context, FeedActivity.class);
 							i.putExtra("STORE_ID",storeID);
 							startActivity(i);
+							finish();
 						}
 					});
 
@@ -120,6 +126,16 @@ public class InputActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.input, menu);
+		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch(item.getItemId()){
+		case android.R.id.home:
+			finish();
+			break;
+		}
 		return true;
 	}
 

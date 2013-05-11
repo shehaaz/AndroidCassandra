@@ -13,6 +13,7 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -24,7 +25,6 @@ import android.widget.Toast;
 import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.profile.Profile;
-import com.android.cassandra.droidbargain.stores.StoreActivity;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
 import com.android.cassandra.droidbargain.stores.StoreList;
 import com.loopj.android.http.AsyncHttpClient;
@@ -49,21 +49,18 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 		appContext = getApplicationContext();
 
-		//		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		//
-		//		Criteria criteria = new Criteria();
-		//		provider = locationManager.getBestProvider(criteria, false);
-		//		Location location = locationManager.getLastKnownLocation(provider);
-		//
-		//		if (location != null) {
-		//			onLocationChanged(location);
-		//		} else {
-		//			
-		//		}
-		userLat = "45.495121";
-		userLng = "-73.580314";
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+		Criteria criteria = new Criteria();
+		provider = locationManager.getBestProvider(criteria, false);
+		Location location = locationManager.getLastKnownLocation(provider);
 
+		if (location != null) {
+			onLocationChanged(location);
+		} else {
+			userLat = "45.495121";
+			userLng = "-73.580314";
+		}
 
 		if(!(this.getIntent().hasExtra("STORE_ID"))){
 			initializeDialog();
@@ -103,8 +100,8 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-		int lat = (int) (location.getLatitude());
-		int lng = (int) (location.getLongitude());
+		double lat = (double) (location.getLatitude());
+		double lng = (double) (location.getLongitude());
 		userLat = String.valueOf(lat);
 		userLng = String.valueOf(lng);
 	}

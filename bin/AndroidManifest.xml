@@ -10,6 +10,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
 
     <application
         android:allowBackup="true"
@@ -18,7 +21,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.android.cassandra.droidbargain.feed.FeedActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,19 +31,23 @@
         </activity>
         <activity
             android:name="com.android.cassandra.droidbargain.profile.Profile"
-            android:label="@string/title_activity_profile" >
+            android:label="@string/title_activity_profile" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.android.cassandra.droidbargain.stores.StoreList"
-            android:label="@string/title_activity_stores" >
+            android:label="@string/title_activity_stores" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.android.cassandra.droidbargain.stores.StoreActivity"
-            android:label="@string/title_activity_store" >
+            android:label="@string/title_activity_store" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.android.cassandra.droidbargain.InputActivity"
-            android:label="@string/title_activity_input" >
+            android:label="@string/title_activity_input" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

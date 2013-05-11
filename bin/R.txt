@@ -50,6 +50,8 @@ int string app_name 0x7f050000
 int string empty_string 0x7f050001
 int string hello_world 0x7f050003
 int string list_title_store 0x7f05000c
+int string not_support_gps 0x7f050010
+int string not_support_network 0x7f050011
 int string open_camera 0x7f050006
 int string open_profile 0x7f050005
 int string open_stores 0x7f050007

@@ -37,11 +37,11 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	private Context appContext;
 	public static ArrayList<FeedFactory> feed_data = new ArrayList<FeedFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
-	private String userLat;
-	private String userLng;
+	private String userLatLng;
 	private LocationManager locationManager;
 	private String provider;
 	private ProgressDialog pDialog;
+	private LocationManager mLocationManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -49,19 +49,12 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		setContentView(R.layout.activity_feed);
 
 		appContext = getApplicationContext();
+		
+		
+		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		userLatLng = new GetUserLocation(this, mLocationManager).getUserLocation();
 
-		Criteria criteria = new Criteria();
-		provider = locationManager.getBestProvider(criteria, false);
-		Location location = locationManager.getLastKnownLocation(provider);
-
-		if (location != null) {
-			onLocationChanged(location);
-		} else {
-			userLat = "45.495121";
-			userLng = "-73.580314";
-		}
 
 		if(!(this.getIntent().hasExtra("STORE_ID"))){
 			initializeDialog();
@@ -99,13 +92,6 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		}
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
-		double lat = (double) (location.getLatitude());
-		double lng = (double) (location.getLongitude());
-		userLat = String.valueOf(lat);
-		userLng = String.valueOf(lng);
-	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -179,7 +165,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 		AsyncHttpClient googlePlaces_client = new AsyncHttpClient();
 
-		googlePlaces_client.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+userLat+","+userLng+"&radius=500&types=book_store%7Cclothing_store%7Celectronics_store%7Cshoe_store%7Cjewelry_store&sensor=true&key=AIzaSyDMtyVzs_11fW_oye9hDLDu0OfPJXskBwg", 
+		googlePlaces_client.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+userLatLng+"&radius=500&types=book_store%7Cclothing_store%7Celectronics_store%7Cshoe_store%7Cjewelry_store&sensor=true&key=AIzaSyDMtyVzs_11fW_oye9hDLDu0OfPJXskBwg", 
 				new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject response) {
@@ -209,6 +195,13 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			}
 		});
 
+	}
+
+
+	@Override
+	public void onLocationChanged(Location location) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

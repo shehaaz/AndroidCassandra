@@ -79,6 +79,8 @@ public final class R {
         public static final int empty_string=0x7f050001;
         public static final int hello_world=0x7f050003;
         public static final int list_title_store=0x7f05000c;
+        public static final int not_support_gps=0x7f050010;
+        public static final int not_support_network=0x7f050011;
         public static final int open_camera=0x7f050006;
         public static final int open_profile=0x7f050005;
         public static final int open_stores=0x7f050007;

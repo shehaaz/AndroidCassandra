@@ -17,5 +17,7 @@
     <string name="title_activity_store">Store Page</string>
     <string name="title_store_profile">Store Profile</string>
     <string name="title_store_deals">Deals</string>
+    <string name="not_support_gps">GPS provider not supported</string>
+    <string name="not_support_network">Network provider not supported</string>
 
 </resources>

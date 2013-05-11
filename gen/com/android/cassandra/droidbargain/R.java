@@ -32,7 +32,6 @@ public final class R {
         public static final int search_bg_shadow=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f080015;
         public static final int editText2=0x7f080001;
         public static final int editText4=0x7f080007;
         public static final int editText5=0x7f080003;

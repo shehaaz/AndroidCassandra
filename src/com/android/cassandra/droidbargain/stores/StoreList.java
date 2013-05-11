@@ -16,9 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.profile.Profile;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -53,7 +55,7 @@ public class StoreList extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.stores, menu);
+		getMenuInflater().inflate(R.menu.feed_menu, menu);
 		return true;
 	}
 
@@ -63,6 +65,17 @@ public class StoreList extends ListActivity {
 		case android.R.id.home:
 			finish();
 			break;
+		case R.id.open_profile:
+			startActivity(new Intent(this, Profile.class));
+			return true;
+		case R.id.open_stores:
+			startActivity(new Intent(this, StoreList.class));
+			return true;
+		case R.id.open_camera:
+			startActivity(new Intent(this, InputActivity.class));
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 		return true;
 	}

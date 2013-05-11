@@ -6,12 +6,14 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.R.layout;
 import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.feed.FeedAdapter;
 import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.profile.Profile;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -30,7 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class StoreActivity extends FragmentActivity implements ActionBar.TabListener {
-	
+
 	private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 	private static ViewPager mViewPager;
 
@@ -40,14 +42,14 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_store);
-		
-				
+
+
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		
+
 		mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
-		
+
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
@@ -55,9 +57,9 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 				actionBar.setSelectedNavigationItem(position);
 			}
 		});
-		
+
 		mViewPager.setAdapter(mAppSectionsPagerAdapter);
-		
+
 		//naming the tabs of the ActionBar
 		actionBar.addTab(actionBar.newTab()
 				.setText(R.string.title_store_profile)
@@ -70,20 +72,31 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.store, menu);
+		getMenuInflater().inflate(R.menu.feed_menu, menu);
 		return true;
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch(item.getItemId()){
 		case android.R.id.home:
 			finish();
 			break;
+		case R.id.open_profile:
+			startActivity(new Intent(this, Profile.class));
+			return true;
+		case R.id.open_stores:
+			startActivity(new Intent(this, StoreList.class));
+			return true;
+		case R.id.open_camera:
+			startActivity(new Intent(this, InputActivity.class));
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 		return true;
 	}
-	
+
 	private static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
 		private static final int NUM_SECTIONS = 2;
@@ -99,7 +112,7 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 
 			case 0:
 				return new StoreProfileFragment();
-				 
+
 			case 1:
 				return new StoreDealsFragment();
 
@@ -117,7 +130,7 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	@Override
 	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -125,13 +138,13 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 		// When the given tab is selected, switch to the corresponding page in the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
 	}
-	
+
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 
 
 }

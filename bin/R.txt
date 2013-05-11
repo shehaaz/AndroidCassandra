@@ -9,7 +9,6 @@ int drawable menu_camera2 0x7f020005
 int drawable open_profile 0x7f020006
 int drawable open_stores 0x7f020007
 int drawable search_bg_shadow 0x7f020008
-int id action_settings 0x7f080015
 int id editText2 0x7f080001
 int id editText4 0x7f080007
 int id editText5 0x7f080003

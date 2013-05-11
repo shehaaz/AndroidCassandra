@@ -37,6 +37,8 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 			holder = new FeedHolder();
 			holder.title = (TextView) row.findViewById(R.id.feed_title);
 			holder.desc = (TextView) row.findViewById(R.id.feed_desc);
+			holder.price = (TextView) row.findViewById(R.id.feed_price);
+			holder.location = (TextView) row.findViewById(R.id.feed_location);
 
 			row.setTag(holder);
 		}
@@ -47,6 +49,8 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 		FeedFactory feed = feedFactory.get(position);
 		holder.title.setText(feed.getTitle());
 		holder.desc.setText(feed.getDesc());
+		holder.price.setText(feed.getPrice());
+		holder.location.setText(feed.getLocation());
 
 		return row;
 	}
@@ -54,6 +58,8 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 	static class FeedHolder{
 		TextView title;
 		TextView desc;
+		TextView price;
+		TextView location;
 	}
 
 }

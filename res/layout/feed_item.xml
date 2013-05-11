@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif-dark"
+        android:textColor="#000000"
         android:text="Title"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -24,5 +25,26 @@
         android:fontFamily="sans-serif-condensed"
         android:text="DESCRIPTION"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/feed_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feed_desc"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#000000"
+        android:text="PRICE"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/feed_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feed_price"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="LOCATION"
+        android:textSize="14sp" />
 
 </RelativeLayout>

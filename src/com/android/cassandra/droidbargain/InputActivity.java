@@ -7,7 +7,9 @@ import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,17 +44,21 @@ public class InputActivity extends Activity {
 	private String timestamp;
 	private String location;
 	private Calendar calendar;
+	private Context appContext;
+	private AlertDialog.Builder alertDialogBuilder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_input);
-		
+
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
+		alertDialogBuilder = new AlertDialog.Builder(this);
+
 		calendar = Calendar.getInstance();
-		
+
 		title = (EditText) findViewById(R.id.post_title);
 		body = (EditText) findViewById(R.id.post_body);
 		price = (EditText) findViewById(R.id.post_price);
@@ -65,59 +71,78 @@ public class InputActivity extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mySpinner = (Spinner) findViewById(R.id.miSpinner);
 		mySpinner.setAdapter(adapter);
-		
 
-		
+
+
 		mySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-	            @Override
-	            public void onItemSelected(AdapterView<?> adapterView, View view,
-	                    int position, long id) {
-	                // Here you get the current item (a User object) that is selected by its position
-	                StoreFactory store = adapter.getItem(position);
-	                // Here you can do the action you want to...
-	                //Toast.makeText(Main.this, "ID: " + user.getId() + "\nName: " + user.getName(),
-	                    //Toast.LENGTH_SHORT).show();
-	                storeID = store.getStoreID();
-	                location = store.getStoreTitle();
-	               
-	            }
-	            @Override
-	            public void onNothingSelected(AdapterView<?> adapter) {  }
-	        });
-		 
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view,
+					int position, long id) {
+
+				StoreFactory store = adapter.getItem(position);
+				storeID = store.getStoreID();
+				location = store.getStoreTitle();
+
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> adapter) {  }
+		});
+
 
 		Button buttonDB = (Button) findViewById(R.id.putindb);
 		buttonDB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
+				String postTitle = title.getText().toString();
+				String postBody = body.getText().toString();
+				String postPrice = price.getText().toString();
 
-				try {
-					AsyncHttpClient client = new AsyncHttpClient();
-					JSONObject jsonParams = new JSONObject();
-					timestamp = String.valueOf(calendar.getTimeInMillis());
-					jsonParams.put("title", title.getText().toString());
-					jsonParams.put("body", body.getText().toString());
-					jsonParams.put("price", price.getText().toString());
-					jsonParams.put("location", location);
-					StringEntity entity = new StringEntity(jsonParams.toString());
-					System.out.println(jsonParams.toString());
+				if(!postTitle.isEmpty() && !postBody.isEmpty() && !postPrice.isEmpty()){
 
-                           client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts/"+storeID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
-						@Override
-						public void onSuccess(String response) {
-							System.out.println("Success HTTP PUT");
-							Intent i = new Intent(context, FeedActivity.class);
-							i.putExtra("STORE_ID",storeID);
-							startActivity(i);
-							finish();
+					try {
+						AsyncHttpClient client = new AsyncHttpClient();
+						JSONObject jsonParams = new JSONObject();
+						timestamp = String.valueOf(calendar.getTimeInMillis());
+						jsonParams.put("title", postTitle);
+						jsonParams.put("body", postBody);
+						jsonParams.put("price", postPrice);
+						jsonParams.put("location", location);
+						StringEntity entity = new StringEntity(jsonParams.toString());
+						System.out.println(jsonParams.toString());
+
+						client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts/"+storeID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(String response) {
+								System.out.println("Success HTTP PUT");
+								Intent i = new Intent(context, FeedActivity.class);
+								i.putExtra("STORE_ID",storeID);
+								startActivity(i);
+								finish();
+							}
+						});
+
+					} catch (Exception e) {
+						System.out.println("Failed HTTP PUT");
+					} 
+				}
+				
+				else{
+					alertDialogBuilder.setTitle("Please Fill all Fields");
+					alertDialogBuilder
+					.setCancelable(false)
+					.setPositiveButton("Cancel",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							dialog.cancel();
 						}
-					});
-
-				} catch (Exception e) {
-					System.out.println("Failed HTTP PUT");
-				} 
-
+					  });
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
+	 
+					// show it
+					alertDialog.show();
+				}
 			}
 		});
 	}
@@ -128,7 +153,7 @@ public class InputActivity extends Activity {
 		getMenuInflater().inflate(R.menu.input, menu);
 		return true;
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch(item.getItemId()){

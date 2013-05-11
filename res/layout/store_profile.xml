@@ -10,8 +10,29 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="124dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="sans-serif-dark"
         android:text="Title"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/store_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/store_title"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginBottom = "10dp"
+        android:text="Address"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/store_num_deal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/store_location"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Num Deals"
+        android:textSize="25sp" />
 
 </RelativeLayout>

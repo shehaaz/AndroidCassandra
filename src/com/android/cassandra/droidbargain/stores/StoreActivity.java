@@ -4,7 +4,6 @@ import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.R.layout;
 import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
-import com.android.cassandra.droidbargain.stores.deals.StoreDealsFragment;
 
 
 import android.os.Bundle;

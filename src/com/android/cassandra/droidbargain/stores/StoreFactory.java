@@ -9,8 +9,8 @@ import com.android.cassandra.droidbargain.feed.FeedFactory;
 
 public class StoreFactory implements Parcelable {
 
-	private String storeTitle;
 	private String storeID;
+	private String storeTitle;
 	private String address;
 	private double lat;
 	private double lng;
@@ -20,16 +20,16 @@ public class StoreFactory implements Parcelable {
 
 	public StoreFactory(String pStoreID,String pStoreTitle,String pAddress, double pLat, double pLng) {
 
-		storeTitle = pStoreTitle;
 		storeID = pStoreID;
+		storeTitle = pStoreTitle;
 		address = pAddress;
 		lat = pLat;
 		lng = pLng;
 	}
 	
 	public StoreFactory(Parcel source){
-		storeTitle = source.readString();
 		storeID = source.readString();
+		storeTitle = source.readString();
 		address = source.readString();
 		lat = source.readDouble();
 		lng = source.readDouble();
@@ -38,12 +38,12 @@ public class StoreFactory implements Parcelable {
 	
 	@Override
 	public void writeToParcel(Parcel dest, int flags){
-		dest.writeString(storeTitle);
 		dest.writeString(storeID);
+		dest.writeString(storeTitle);
 		dest.writeString(address);
 		dest.writeDouble(lat);
 		dest.writeDouble(lng);
-		dest.writeList(deal_data);
+		dest.writeTypedList(deal_data);
 	}
 	
 	public static final Creator<StoreFactory> CREATOR = new Creator<StoreFactory>() {

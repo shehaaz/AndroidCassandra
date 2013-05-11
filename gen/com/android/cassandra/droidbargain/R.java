@@ -58,8 +58,9 @@ public final class R {
         public static final int activity_store=0x7f030003;
         public static final int activity_stores=0x7f030004;
         public static final int feed_item=0x7f030005;
-        public static final int store_item=0x7f030006;
-        public static final int store_profile=0x7f030007;
+        public static final int list_store_deals=0x7f030006;
+        public static final int store_item=0x7f030007;
+        public static final int store_profile=0x7f030008;
     }
     public static final class menu {
         public static final int feed_menu=0x7f070000;

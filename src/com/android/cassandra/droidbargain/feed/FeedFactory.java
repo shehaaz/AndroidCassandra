@@ -3,7 +3,7 @@ package com.android.cassandra.droidbargain.feed;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FeedFactory implements Parcelable {
+public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 
 
 	private String timeStamp;
@@ -77,5 +77,13 @@ public class FeedFactory implements Parcelable {
 	public int describeContents() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int compareTo(FeedFactory another) {
+		Double compareQuantity = Double.parseDouble(((FeedFactory) another).getTimeStamp()); 
+		 
+		//descending order
+		return (int) (compareQuantity -  Double.parseDouble(this.getTimeStamp()));
 	}
 }

@@ -3,6 +3,7 @@ package com.android.cassandra.droidbargain.feed;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.json.JSONArray;
@@ -160,6 +161,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location); 	
 							feed_data.add(currFeedObj);
 						}
+						Collections.sort(feed_data);
 						FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
 						setListAdapter(adapter);
 					} catch (JSONException e) {
@@ -223,6 +225,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 											feed_data.add(currFeedObj);
 											newStore.addDeal(currFeedObj);
 										}
+										Collections.sort(feed_data);
 										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
 										setListAdapter(adapter);
 									} catch (JSONException e) {

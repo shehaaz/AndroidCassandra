@@ -65,11 +65,11 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 		if(!(this.getIntent().hasExtra("STORE_ID"))){
 			initializeDialog();
-			downloadData();
+			downloadStores();
 		}
 		else {
 			String store_id = getIntent().getStringExtra("STORE_ID");
-			downloadNewData(store_id);
+			downloadStoreData(store_id);
 		}
 	}
 
@@ -134,7 +134,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		pDialog.show();	
 	}
 
-	private void downloadNewData(String store_id) {
+	private void downloadStoreData(String store_id) {
 
 		AsyncHttpClient cassandra_client = new AsyncHttpClient();
 		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store_id,new AsyncHttpResponseHandler() {
@@ -175,7 +175,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 	}
 
-	private void downloadData(){
+	private void downloadStores(){
 
 		AsyncHttpClient googlePlaces_client = new AsyncHttpClient();
 
@@ -198,45 +198,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 						final StoreFactory newStore = new StoreFactory(id,name,address,lat,lng);
 
 						store_data.add(newStore);
-
-						AsyncHttpClient cassandra_client = new AsyncHttpClient();
-						cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+id,new AsyncHttpResponseHandler() {
-							@Override
-							public void onSuccess(String  response) {
-
-								if(response != null){
-
-									JSONObject jObject;
-									try {
-										jObject = new JSONObject(response);
-
-										Iterator<?> keys = jObject.keys();
-										while(keys.hasNext()){
-											String currentTimestamp = (String) keys.next();
-
-											String postString = jObject.getString(currentTimestamp);
-											JSONObject currentPostObject = new JSONObject(postString);
-
-											String title = currentPostObject.getString("title");
-											String desc = currentPostObject.getString("body"); 
-											String price = currentPostObject.getString("price");
-											String location = currentPostObject.getString("location");
-											FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location); 	
-											feed_data.add(currFeedObj);
-											newStore.addDeal(currFeedObj);
-										}
-										Collections.sort(feed_data);
-										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
-										setListAdapter(adapter);
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-								}
-
-							}
-						});
-
+						downloadStoreData(id);
 					}
 					pDialog.dismiss();
 				}

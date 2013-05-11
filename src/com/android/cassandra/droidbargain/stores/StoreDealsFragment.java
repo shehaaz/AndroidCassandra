@@ -23,6 +23,8 @@ public class StoreDealsFragment extends ListFragment {
 		Bundle bundle = getActivity().getIntent().getExtras();
 		store = (StoreFactory)bundle.getParcelable("THE_STORE");
 		
+
+		
 		return rootView;
 	}
 	

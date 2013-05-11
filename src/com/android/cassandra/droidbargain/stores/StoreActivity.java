@@ -1,9 +1,19 @@
 package com.android.cassandra.droidbargain.stores;
 
+import java.util.Collections;
+import java.util.Iterator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.R.layout;
 import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
+import com.android.cassandra.droidbargain.feed.FeedAdapter;
+import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 
 import android.os.Bundle;
@@ -25,10 +35,12 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	private static ViewPager mViewPager;
 
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_store);
+		
 				
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -119,5 +131,7 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 
 }

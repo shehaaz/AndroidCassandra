@@ -3,7 +3,7 @@ AndroidCassandra
 
 Crowd-sourced bargain finding app for Android that uses Apache Cassandra
 
-Current Release: Stable Ultra Alpha 0.1
+Current Release: Stable Alpha 0.5
 
 Tools used:
 * [Cassandra 1.2] (http://cassandra.apache.org/download/)

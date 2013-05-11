@@ -23,8 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
+import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
 import com.android.cassandra.droidbargain.stores.StoreList;

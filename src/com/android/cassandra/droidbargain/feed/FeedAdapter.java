@@ -49,7 +49,7 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 		FeedFactory feed = feedFactory.get(position);
 		holder.title.setText(feed.getTitle());
 		holder.desc.setText(feed.getDesc());
-		holder.price.setText(feed.getPrice());
+		holder.price.setText(feed.getPrice()+"$");
 		holder.location.setText(feed.getLocation());
 
 		return row;

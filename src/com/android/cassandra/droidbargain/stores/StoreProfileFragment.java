@@ -30,18 +30,20 @@ public class StoreProfileFragment extends Fragment {
 		TextView store_num_posts = (TextView) rootView.findViewById(R.id.store_num_deal);
 
 		int num_deals = store.getDeal_data().size();
-		if (num_deals == 1) {
+
+		switch(num_deals){
+
+		case 0: 
+			store_num_posts.setText("No Deals Yet!");
+			break;
+		case 1:
 			store_num_posts.setText(num_deals + " Deal Right Now!");
-		} else{
+			break;
+		default:
 			store_num_posts.setText(num_deals + " Deals Right Now!");
 		}
 
-
-
-
-
 		return rootView;
-
 
 	}
 

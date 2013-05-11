@@ -44,7 +44,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.android.cassandra.droidbargain.InputActivity"
+            android:name="com.android.cassandra.droidbargain.input.InputActivity"
             android:label="@string/title_activity_input" 
             android:screenOrientation="portrait">
         </activity>

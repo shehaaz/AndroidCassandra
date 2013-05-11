@@ -12,9 +12,9 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.android.cassandra.droidbargain.InputActivity;
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
+import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.stores.StoreList;
 
 public class Profile extends FragmentActivity implements ActionBar.TabListener {

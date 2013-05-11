@@ -11,8 +11,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="124dp"
         android:fontFamily="sans-serif-dark"
-        android:text="Title"
-        android:textSize="35sp" />
+        android:text="Apple Store St-Catherine"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/store_location"
@@ -33,6 +33,6 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-condensed"
         android:text="Num Deals"
-        android:textSize="25sp" />
+        android:textSize="30sp" />
 
 </RelativeLayout>

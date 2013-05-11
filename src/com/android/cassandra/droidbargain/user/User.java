@@ -1,4 +1,4 @@
-package com.android.cassandra.droidbargain;
+package com.android.cassandra.droidbargain.user;
 
 import java.io.Serializable;
 

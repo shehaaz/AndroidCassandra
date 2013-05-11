@@ -1,4 +1,4 @@
-package com.android.cassandra.droidbargain;
+package com.android.cassandra.droidbargain.input;
 
 import java.util.Calendar;
 
@@ -22,6 +22,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.cassandra.droidbargain.R;
+import com.android.cassandra.droidbargain.R.id;
+import com.android.cassandra.droidbargain.R.layout;
+import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
 import com.loopj.android.http.AsyncHttpClient;

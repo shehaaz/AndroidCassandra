@@ -32,24 +32,26 @@ public final class R {
         public static final int search_bg_shadow=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f080011;
+        public static final int action_settings=0x7f080013;
         public static final int editText2=0x7f080001;
         public static final int editText4=0x7f080007;
         public static final int editText5=0x7f080003;
         public static final int feed_desc=0x7f08000a;
+        public static final int feed_location=0x7f08000c;
+        public static final int feed_price=0x7f08000b;
         public static final int feed_title=0x7f080009;
-        public static final int imageView1=0x7f08000b;
+        public static final int imageView1=0x7f08000d;
         public static final int miSpinner=0x7f080005;
-        public static final int open_camera=0x7f08000e;
-        public static final int open_profile=0x7f080010;
-        public static final int open_stores=0x7f08000f;
+        public static final int open_camera=0x7f080010;
+        public static final int open_profile=0x7f080012;
+        public static final int open_stores=0x7f080011;
         public static final int pager=0x7f080008;
         public static final int post_body=0x7f080002;
         public static final int post_price=0x7f080004;
         public static final int post_title=0x7f080000;
         public static final int putindb=0x7f080006;
-        public static final int store_title=0x7f08000d;
-        public static final int title_store=0x7f08000c;
+        public static final int store_title=0x7f08000f;
+        public static final int title_store=0x7f08000e;
     }
     public static final class layout {
         public static final int activity_feed=0x7f030000;
@@ -59,8 +61,9 @@ public final class R {
         public static final int activity_stores=0x7f030004;
         public static final int feed_item=0x7f030005;
         public static final int list_store_deals=0x7f030006;
-        public static final int store_item=0x7f030007;
-        public static final int store_profile=0x7f030008;
+        public static final int spinner_item=0x7f030007;
+        public static final int store_item=0x7f030008;
+        public static final int store_profile=0x7f030009;
     }
     public static final class menu {
         public static final int feed_menu=0x7f070000;

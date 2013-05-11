@@ -42,6 +42,7 @@ public class SpinAdapter extends ArrayAdapter<StoreFactory>{
     	       
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
+        label.setTextSize(25);
 
         label.setText(values.get(position).getStoreTitle());
 
@@ -55,6 +56,7 @@ public class SpinAdapter extends ArrayAdapter<StoreFactory>{
             ViewGroup parent) {
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
+        label.setTextSize(20);
         label.setText(values.get(position).getStoreTitle());
 
         return label;

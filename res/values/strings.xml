@@ -12,6 +12,7 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_profile">Profile</string>
     <string name="title_liked_deals">Fav\'ed Deals</string>
+    <string name="my_deals">My Deals</string>
     <string name="title_activity_stores">Stores</string>
     <string name="list_title_store">La Maison Simons</string>
     <string name="title_activity_store">Store Page</string>

@@ -1,5 +1,6 @@
 package com.android.cassandra.droidbargain.stores;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -37,12 +38,10 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	private static ViewPager mViewPager;
 
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_store);
-
 
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -72,79 +71,69 @@ public class StoreActivity extends FragmentActivity implements ActionBar.TabList
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.feed_menu, menu);
+		getMenuInflater().inflate(R.menu.stores, menu);
 		return true;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch(item.getItemId()){
+		
 		case android.R.id.home:
 			finish();
 			break;
-		case R.id.open_profile:
-			startActivity(new Intent(this, Profile.class));
-			return true;
-		case R.id.open_stores:
-			startActivity(new Intent(this, StoreList.class));
-			return true;
-		case R.id.open_camera:
-			startActivity(new Intent(this, InputActivity.class));
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 		return true;
 	}
 
-	private static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
+		private static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
-		private static final int NUM_SECTIONS = 2;
+			private static final int NUM_SECTIONS = 2;
 
-		public AppSectionsPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
+			public AppSectionsPagerAdapter(FragmentManager fm) {
+				super(fm);
+			}
 
-		@Override
-		public Fragment getItem(int i) {
+			@Override
+			public Fragment getItem(int i) {
 
-			switch(i) {
+				switch(i) {
 
-			case 0:
-				return new StoreProfileFragment();
+				case 0:
+					return new StoreProfileFragment();
 
-			case 1:
-				return new StoreDealsFragment();
+				case 1:
+					return new StoreDealsFragment();
 
-			default:
-				return null;
+				default:
+					return null;
+				}
+			}
+
+			@Override
+			public int getCount() {
+				return NUM_SECTIONS;
 			}
 		}
 
 		@Override
-		public int getCount() {
-			return NUM_SECTIONS;
+		public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+			// TODO Auto-generated method stub
+
 		}
-	}
 
-	@Override
-	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
+		@Override
+		public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+			// When the given tab is selected, switch to the corresponding page in the ViewPager.
+			mViewPager.setCurrentItem(tab.getPosition());
+		}
 
-	}
+		@Override
+		public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+			// TODO Auto-generated method stub
 
-	@Override
-	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-		// When the given tab is selected, switch to the corresponding page in the ViewPager.
-		mViewPager.setCurrentItem(tab.getPosition());
-	}
-
-	@Override
-	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
+		}
 
 	}
-
-
-
-}

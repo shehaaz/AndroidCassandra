@@ -308,7 +308,7 @@ containing a value of this type.
     }
     public static final class string {
         public static final int action_settings=0x7f05001b;
-        public static final int app_id=0x7f05002b;
+        public static final int app_id=0x7f05002c;
         public static final int app_name=0x7f050019;
         public static final int com_facebook_choose_friends=0x7f05000f;
         public static final int com_facebook_dialogloginactivity_ok_button=0x7f050000;
@@ -337,22 +337,23 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f05000a;
         public static final int empty_string=0x7f05001a;
         public static final int hello_world=0x7f05001c;
-        public static final int list_title_store=0x7f050025;
-        public static final int not_support_gps=0x7f050029;
-        public static final int not_support_network=0x7f05002a;
+        public static final int list_title_store=0x7f050026;
+        public static final int my_deals=0x7f050024;
+        public static final int not_support_gps=0x7f05002a;
+        public static final int not_support_network=0x7f05002b;
         public static final int open_camera=0x7f05001f;
         public static final int open_profile=0x7f05001e;
         public static final int open_stores=0x7f050020;
-        public static final int profile_name=0x7f05002d;
-        public static final int profile_picture=0x7f05002c;
+        public static final int profile_name=0x7f05002e;
+        public static final int profile_picture=0x7f05002d;
         public static final int title_activity_input=0x7f05001d;
         public static final int title_activity_profile=0x7f050021;
-        public static final int title_activity_store=0x7f050026;
-        public static final int title_activity_stores=0x7f050024;
+        public static final int title_activity_store=0x7f050027;
+        public static final int title_activity_stores=0x7f050025;
         public static final int title_liked_deals=0x7f050023;
         public static final int title_profile=0x7f050022;
-        public static final int title_store_deals=0x7f050028;
-        public static final int title_store_profile=0x7f050027;
+        public static final int title_store_deals=0x7f050029;
+        public static final int title_store_profile=0x7f050028;
     }
     public static final class style {
         /** 

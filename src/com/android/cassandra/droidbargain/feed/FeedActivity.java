@@ -98,7 +98,8 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		// new GetUserLocation(this, mLocationManager).getUserLocation();
-		userLatLng = "45.49515,-73.577558";
+		//"45.49515,-73.577558";
+		userLatLng =  new GetUserLocation(this, mLocationManager).getUserLocation();
 
 
 		if(!(this.getIntent().hasExtra("STORE_ID"))){

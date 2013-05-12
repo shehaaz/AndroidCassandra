@@ -1,5 +1,11 @@
 package com.android.cassandra.droidbargain.profile;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -13,22 +19,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.feed.FeedActivity;
+import com.android.cassandra.droidbargain.feed.FeedFactory;
 import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.stores.StoreList;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class Profile extends FragmentActivity implements ActionBar.TabListener {
 
 	private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 	private static ViewPager mViewPager;
 	private User bargain_user;
+	protected static ArrayList<FeedFactory> user_deal_data;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
-		
+
 		bargain_user = (User) getIntent().getSerializableExtra("USER_PROFILE");
+
+		downloadData(bargain_user.getUser_ID());
+
 
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -44,14 +56,14 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 			}
 		});
 
-		mViewPager.setAdapter(mAppSectionsPagerAdapter);
+
 
 		//naming the tabs of the ActionBar
 		actionBar.addTab(actionBar.newTab()
 				.setText(R.string.title_profile)
 				.setTabListener(this));
 		actionBar.addTab(actionBar.newTab()
-				.setText(R.string.title_liked_deals)
+				.setText(R.string.my_deals)
 				.setTabListener(this));		
 	}
 
@@ -106,7 +118,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 				return new ProfileFragment();
 
 			case 1:
-				return new FavDealsFragment();
+				return new MyDealsFragment();
 
 			default:
 				return null;
@@ -134,6 +146,45 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
+
+	}
+
+	private void downloadData(String user_id) {
+		
+		 user_deal_data = new ArrayList<FeedFactory>();
+
+		AsyncHttpClient cassandra_client = new AsyncHttpClient();
+		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_user/"+user_id,new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(String  response) {
+
+				JSONObject jObject;
+				try {
+					jObject = new JSONObject(response);
+
+					Iterator<?> keys = jObject.keys();
+					while(keys.hasNext()){
+
+						String currentTimestamp = (String) keys.next();
+
+						String postString = jObject.getString(currentTimestamp);
+						JSONObject currentPostObject = new JSONObject(postString);
+
+						String title = currentPostObject.getString("title");
+						String desc = currentPostObject.getString("body"); 
+						String price = currentPostObject.getString("price");
+						String location = currentPostObject.getString("location");
+						FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location); 	
+						user_deal_data.add(currFeedObj);
+					}
+					mViewPager.setAdapter(mAppSectionsPagerAdapter);
+				}
+				catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
 

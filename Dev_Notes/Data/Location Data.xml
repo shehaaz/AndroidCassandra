@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlaceSearchResponse>
+ <status>OK</status>
+ <result>
+  <name>Light Ultra Club</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>2020 Crescent Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4982310</lat>
+    <lng>-73.5776130</lng>
+   </location>
+  </geometry>
+  <rating>2.5</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRuAAAATLW10S2zFB4f2QGQYytAf67RWJi_8eHmJ9KMFQfFrF2UvcsYQoUBP7DxvZmH6Ka4hQvgqOXsqqA34S-FeO4EMCkKCbwYqlf4zfZX5li_H9WsncfZk-21LGhY7iG1PFg4JWYsuZoIyyX49HIbqaETLRIQSVKUVZI-aU4exZVLSckzJhoUIPKr1ZHj4dIjdQ4CjTVyzZo3cYw</reference>
+  <id>0bd9907a42fd02a5c6d492f2948f5bdd25eb0cb7</id>
+  <photo>
+   <photo_reference>CpQBjAAAAHdXeJyfzK8ORCC6ww-AsFl9zuNvE8IVhaDSpBIFDGWLbYHprhCJgUu0RW0sHu3q2EhOfpC6h6xJL3UO1N9cSVPcOPk67waNFufr3HMZzanF7nY5KGYjjgZS4F4LA7_tIcjhOfNx65NTGdwTPZA6y5_CU-yLYuOOZixVpPlwCroJt53AdMVD-DwsGS769rW3GRIQLblx3yQGz7HgFfJttqGolxoUpC8FfvcENBJKNTk1E0-AbLtAvBk</photo_reference>
+   <width>960</width>
+   <height>640</height>
+   <html_attribution>&lt;a href=&quot;https://plus.google.com/115185927651391368543&quot;&gt;T Ron&lt;/a&gt;</html_attribution>
+  </photo>
+ </result>
+ <result>
+  <name>Stereo Night Club</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>858 Sainte-Catherine St E, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5160580</lat>
+    <lng>-73.5582020</lng>
+   </location>
+  </geometry>
+  <rating>4.2</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRwAAAAwb0_ugHdtcsc6o9w_ML8L7MHhjt6fRU-rIApAcpWi4QWdbDngbD4TB45nokljT4dlvp9y-u9GvCNKRC54wxu0ZSyUUcnh879W9JIp7lUXqSYPSr1tH8p_2OExogTUPbHjBFmgeKRbAoaXOHJ0V1TMBIQDCIOV-c2FFOiZ83PMqx35RoU1IYnGblHWqaOXTBFuiWTck3idJ0</reference>
+  <id>50d4dcd1c3439502dc9e6deeda2f13a8ffed50ff</id>
+  <opening_hours>
+   <open_now>false</open_now>
+  </opening_hours>
+ </result>
+ <result>
+  <name>Club La Boom Montreal</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1254 Rue Stanley, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4989880</lat>
+    <lng>-73.5730800</lng>
+   </location>
+  </geometry>
+  <rating>3.5</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBdAAAALwjNJVFkUmb5Gd4Gx8A_6MlAJpblXI-fQM4B7L0GFLZ0nYzjicrOT1Lwcf6TNzdFeYDYCsbR5A1cBCxVJt5JBnxV7AihRq7I42EAdNhjE-rHZOJKtjIgfwfHyQZ3t2z0fv5VnigEqpyxn0dWB5EiEqDgbINBxJ2PxIPGqFXj3UPEhBgR7aOf1Gt4FoDCzkUnSB_GhRgX--GO1LD_mebjQS_i4jcZW45AA</reference>
+  <id>20a1007b316fa55de49e6ce27cc9e15cd6ea0a39</id>
+  <opening_hours>
+   <open_now>false</open_now>
+  </opening_hours>
+ </result>
+ <result>
+  <name>Altitude 737</name>
+  <type>night_club</type>
+  <type>bar</type>
+  <type>restaurant</type>
+  <type>food</type>
+  <type>establishment</type>
+  <formatted_address>1 Place Ville Marie, Montreal, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5017300</lat>
+    <lng>-73.5678140</lng>
+   </location>
+  </geometry>
+  <rating>3.6</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRqAAAAqR-8WsptYXUpLpL6ichhRGycdEQhQIAHke0xCCmAmx7KeCR7R_he1HjMyrWPigd0BvKEoJcEUCjhOEO7EvMzMR4rcgxwrwkSi_lRpGW1-MHQ_PA-ha_Hcm7Y11yBlIMEf_n32iFp-HuzihXUbluksxIQsSoOAQv6oan84x8_sOagQBoU4iMY8d79RdzmSJt33nvHQ7IdeYU</reference>
+  <id>e8e36425d2d7f6a78b9f7aaa20905ce109b9faa4</id>
+  <photo>
+   <photo_reference>CnRoAAAAWKWyAJrTIkU3fHDyLQEXucLGhWQ9sGhSZPNbWBZYgl_N4Lp_zl4LUzc8CliD7aTEegEG3ZcNO2ZUnBKykW3jkSpqBEm7AxzwEgUFY5Eta5WOVDyaOAmwaEz9sSfcZRae52yYHXXZz8ubgM8GEE4K8RIQj6AEDWwL9RWfOfSsMGE3QhoUuqBR8jJeS8qp4BnmDUhqn6y_raE</photo_reference>
+   <width>1224</width>
+   <height>1632</height>
+   <html_attribution>&lt;a href=&quot;https://plus.google.com/100950595608952248575&quot;&gt;Jacques Gilbert&lt;/a&gt;</html_attribution>
+  </photo>
+ </result>
+ <result>
+  <name>Bar Downtown</name>
+  <type>night_club</type>
+  <type>bar</type>
+  <type>establishment</type>
+  <formatted_address>1196 Sainte-Catherine West, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4988000</lat>
+    <lng>-73.5739860</lng>
+   </location>
+  </geometry>
+  <rating>4.4</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRqAAAAxpjmm6QaLxPgBoKidwy9XftkRxuTcVsyzDsUI2FIR3MaCsJOutHwBJKOpEnUZZ0sulrn1ElWvP9SunxdRiu5u_8R3X_4WQ79wHiA93ZE5N9MAtQcK8uSk5vpL48JEiEOZ0ftMwWSRYLked8oeqmqCRIQvBOT3pCW5t-qjDkY_hcJvhoUsKZ5slVbwrZ5eJYvn2LOhbTNZh8</reference>
+  <id>3c913b992fce52dd9beed70dc3955c68fb6bd68f</id>
+ </result>
+ <result>
+  <name>Bains Douches</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>390 Saint-Jacques Old MTL, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5018390</lat>
+    <lng>-73.5596690</lng>
+   </location>
+  </geometry>
+  <rating>3.1</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRrAAAA97Unga8xJw1JtCMdi7AnNt2XauhvHujBiWWitsgHWG6CtzRTCEnZZlT8UdHc4lr2rR9hxD1WLfMlP3SJi-GBH2dL7aMNLjkBt_N2qbp17td4dj2vkESQgF5cmKPA107obh47RyX6Ut_vLGRWTiil1BIQAqbM79QbhTSZ-T24J05EoRoUeDEKKNKHA_bDDseafZtdOXjsf_c</reference>
+  <id>f243faa5377bee9d97c02cf210252c4ebc380975</id>
+  <opening_hours>
+   <open_now>false</open_now>
+  </opening_hours>
+  <photo>
+   <photo_reference>CnRtAAAAFOrZMKUej5tawJ59tMR0iGuf9PRuMLOFB1_tg6StONfGIlxVLqFNnG0O0k7APgPzLae9U3P4-8FBSUrC17bHPsG_ce63HJ1brCPwGHJcT5z0HJBdA7M9FT0qL1Ai-5g8xBQxZg1IZDbUBr8MzRYDQxIQpKhGpsW6TgSeoEGFnMmCyBoUeZ_GhstgfsvLatewPmridUhnPew</photo_reference>
+   <width>1200</width>
+   <height>720</height>
+  </photo>
+ </result>
+ <result>
+  <name>Radio Lounge</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>3553 Saint Laurent Boulevard, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5137200</lat>
+    <lng>-73.5718980</lng>
+   </location>
+  </geometry>
+  <rating>2.4</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRqAAAAWoMYQyxhHiopzJWgU62UsMT_eCJwnC7vHdZhW9vEpy6mdMBuQGegn7wxtrJRWMVikUR9JbyLQBYGt5fraPeq44hqlJgI_zcG2bTy09NPQP5_kBMddnkK7XDW7QHl9T8WYluM34FbGg53ZLiv8l1rVRIQTsluRI0O0C0VtJpvHc2o9RoUbytcR85U0o__DEqSrOzxAJDPDks</reference>
+  <id>abde77ce6bc235d3e0d0844f08cd0d1e601e6185</id>
+ </result>
+ <result>
+  <name>1234 Club</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1234 Rue de la Montagne, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4975740</lat>
+    <lng>-73.5746100</lng>
+   </location>
+  </geometry>
+  <rating>2.5</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRnAAAAgQlwWcg_GbXNO1B4mbSgQGG_SQ97RWTqX0rnFUPuXAtl7VmjZHuAhqID33azBbfiAp9fvl056WcJCqe2lj_0i8Gi_zuA273Qmm5923Usne8NQirrqPp3AWwZwelmmCM8h2fjiYXf2sVsJgtK1hwCbBIQUJSu7BJNhIr2J50nz8TJ_xoU_78LLmOhDE4va0Illq5dJA4goh4</reference>
+  <id>0256f858790126850d222bcf0d490109cbbe1f69</id>
+  <opening_hours>
+   <open_now>true</open_now>
+  </opening_hours>
+ </result>
+ <result>
+  <name>Bar Salon Officiel</name>
+  <type>night_club</type>
+  <type>bar</type>
+  <type>restaurant</type>
+  <type>food</type>
+  <type>establishment</type>
+  <formatted_address>351 Rue Roy Est, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5188160</lat>
+    <lng>-73.5730060</lng>
+   </location>
+  </geometry>
+  <rating>3.7</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBcQAAAOVP2YYwaAgskzS7PHb0-SoDwAb7AP1ny9GBs73m9NBuZrAsNvn6rTrn71Xt_hxO22cpn01WlJQE32gtFq7IeyxFT7NsI8wRrmIvqDRYeClpQoVmDpWId1NL6WrenDTQwiMnRNj3N4Bh8NdIR3-UBqGsIH6HF39trNOy1MPjP3IWEhAC4Ha-HK-qXP80GGQVqv5GGhTVDhc6pQaAqgO2UNhNDSCdmpzOZg</reference>
+  <id>4a1e9a037c794de83e626db8fb249a1edb6caae2</id>
+ </result>
+ <result>
+  <name>Tokyo Bar</name>
+  <type>night_club</type>
+  <type>bar</type>
+  <type>establishment</type>
+  <formatted_address>3709 Saint Laurent Boulevard, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5149360</lat>
+    <lng>-73.5744590</lng>
+   </location>
+  </geometry>
+  <rating>2.7</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRoAAAAuXCCWCxG_6nHq_hRUl_NPW5xjf7y3SoguhN1YFs01P3Y0xa_K1tC8esI90IlWRwyRY6SmgbbM8SiW8iMWT0ugcyCFYwyGwKDmNl5U4jl0S3gXxzmQ2gWq9Df0UGZkbuRrRkMEEmnXx2N3OxdtibDJhIQXH98iU8Tu20ZRU9cnDxt-BoU0YNQ1mnd3wM_sS2R5KXe0L7PGfg</reference>
+  <id>bcb5fdad96879ba57010ec921642e3cd045a381b</id>
+  <opening_hours>
+   <open_now>false</open_now>
+  </opening_hours>
+ </result>
+ <result>
+  <name>Club Super Sexe</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>696 Sainte-Catherine Street West, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5026230</lat>
+    <lng>-73.5702300</lng>
+   </location>
+  </geometry>
+  <rating>2.3</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRuAAAAw7Lzio_Sjtz1NQ4-5qcKB6DLgaltvNDSFLBL3wtUfJN3XBiO-DyTyMmrsRMyDHjcShGWv3UlgwdBvotuBLJjY2A-sqd4yiqV_GB5Uy8tGgBeDkbE6Q8W58JadQGBQ8PlcGqIFuSeOg2C0Da5-ivGzBIQF-4dbArYyjyHSsS5L6xr7BoUUXcxyD19irAvJwvW_TNKu_GnR-4</reference>
+  <id>c8cc5d8546222b8a53879bfe5d8898c6a66b7b89</id>
+ </result>
+ <result>
+  <name>Kingdom Gentlemen's Club</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1417 Saint Laurent Boulevard, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5102620</lat>
+    <lng>-73.5642180</lng>
+   </location>
+  </geometry>
+  <rating>4.0</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBdwAAACPuc2lKkNsCmOUKzz3BVNhG6WRxocHYf9ken20Cz0OGp7L20CHJ5El3yJPTUrDT7U3bbQ9Pbr1AfFEcZZNzMkY19IXkfcN2xffhRLQts4SbOa4QG_O6AeAx59ToQuB6nbt0djeMS9C6CxjZr7Y0MpkNAaHkfVxGLR9g6aJOQYAfEhA_8gFefriF5UfowmOkcMYfGhRbU1FIHCGqQ_SsE3HGZjafPeyaaw</reference>
+  <id>03fed1bccfe5a1efa080463ff18438f0fcf48f56</id>
+  <photo>
+   <photo_reference>CpQBhAAAAKaUwXY3mnyB2_162ESUejiEN6Xfbehb27GJJ__fHiznKlz04D4nIsiX1tAh2HaZVoTdxEDbaQ1D0bSHkpyg69Cgw8Ec5KkFL3YyZY4wTV8Z2HrHe0YxBI8Tg6GMWUbrDb_HC0Ib9Eq97PFnMMb1capBRSz0SgI8fKm_GrQrmxx9gp9kYOx8fFnUZgWgtkzjxRIQR3ze8PqPIPtjMpOic_NhKRoU8KPT4c5IUbfwEh82mbPtRkoMHak</photo_reference>
+   <width>604</width>
+   <height>403</height>
+   <html_attribution>From a Google User</html_attribution>
+  </photo>
+ </result>
+ <result>
+  <name>Belmont sur le Boulevard (Le)</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>4483 Saint Laurent Boulevard, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5200950</lat>
+    <lng>-73.5860880</lng>
+   </location>
+  </geometry>
+  <rating>3.8</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBewAAAPH8FeZ-bMTrkIygOsVYERcDthLL0PIRkDvisp7-9FM_FxInb2iPjlowgQfsQG-cLlHlmGnRGYu-cN-S6BrFfAmt10Sf2OU977eKEZkoXs9694f6H6PmK6AMcC0v1NgKsK0ktayWC3MzJvkuL9855KxL5R353LRlFMl1LWuAtpE0EhAF77iV3du-j5-0ghpZPGeEGhTHNPuf0zRODQJoVOFBl3O0zg5AnA</reference>
+  <id>a1b61a7b00c8ced03cd3f29033ad7bfe55eb9cbc</id>
+ </result>
+ <result>
+  <name>Club Unity Montreal</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1171 Saint Catherine Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5184180</lat>
+    <lng>-73.5565000</lng>
+   </location>
+  </geometry>
+  <rating>3.7</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBcQAAAKMSifchUU7pXbMqHojvXkhuFkWZc2UWqYhLWcKLYT8xqFpFfgqOa1anx8KAcseSxHCkkcwYq6dii3114TH6ILHknm-6YFFmRk0SwWbzmEoyvpJlwNPh4vAtyEd51jp4XsksZp8B6htl17t5n4V67uzq9O89ZAhsCs5LvxXWJg_BEhAm48tubTcXyXhbmkJMzurRGhSxNw_7yTuJG2NycAVaEpGyZ5OOJQ</reference>
+  <id>ac1591e9270d9f55f9b2e09a724464e34aa5b059</id>
+ </result>
+ <result>
+  <name>Imperial Room</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1432 Crescent Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4974640</lat>
+    <lng>-73.5766020</lng>
+   </location>
+  </geometry>
+  <rating>2.5</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRrAAAAvALnDY3jYj_NDPAOFOU1__xfLSxhsKfRcyc-CX5J2Qnm4BEmR3Q97R2jpYVqgOFtjkedyMq7sSZbsbFx0xcH2rrKQfQg3Qd-dUPENpAV4fTn-IjRA5T2gkLof7dhbaSL_HurBSy7iID56Ap-l6ymSBIQeLMGixES4omv7NP2JcpaEhoUTa9zW6jEG2vlKskYyVn52tkJxtc</reference>
+  <id>49bbc614eced767664d712caaffe840cdf4b30ce</id>
+ </result>
+ <result>
+  <name>Les Foufounes Électriques</name>
+  <type>night_club</type>
+  <type>bar</type>
+  <type>establishment</type>
+  <formatted_address>87 Saint Catherine Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5109550</lat>
+    <lng>-73.5631320</lng>
+   </location>
+  </geometry>
+  <rating>3.6</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBeQAAAHXEKRjB0RDqgE63AoEplhrozZo-SizkDxaF40Um7frEOXTeHS81aVLgNnl-VI8VY9wCVdSBCSdXwewO8LUVx97GQ3nJmZ9UIVftslTKR8qmxKHZG2QW7HQ_9XDEkwxJrU3FdlOoK-jo95jWmt1VJ7jqb_5wrBpLbCaSx1XE-jLIEhC83SCilIHyrF_jTHX-J01DGhR2STe13up5ZFmKmSA7R9_-g7G7EQ</reference>
+  <id>d84b9be6230d6fc4e0e8128a2482f8ca5428872b</id>
+  <photo>
+   <photo_reference>CpQBhAAAADD6xiYqs_HcJbYkxUQECDKp2D1GwTQsNOquME8VOH4Znqy4IESjxo8buwVYmjU5_EGaGvqI6qFco0vK3neb_FgURoZgr1PeM5PzVbVfllkBbjaRUan8cwSgdiljh7TWRV-7yAzZzuS_GfAT4ilnMQWAJHjmVtJvUa9d9pvMhACITPLbTEjVX1D9rAuAvlxfNhIQXzxzSP3Ikw80uKdeuZvs5BoUkDZg8jz8MzKIhsw5tB6xr3tQLL4</photo_reference>
+   <width>960</width>
+   <height>274</height>
+  </photo>
+ </result>
+ <result>
+  <name>Time Supper Club</name>
+  <type>restaurant</type>
+  <type>food</type>
+  <type>establishment</type>
+  <formatted_address>997 Saint Jacques Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4972000</lat>
+    <lng>-73.5646490</lng>
+   </location>
+  </geometry>
+  <rating>3.7</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png</icon>
+  <reference>CnRuAAAAVINd18c0IQa5AW7COkLPlRJFYq1rJGK1bGBmKCgBS_PT4led8a6PUEPq7tRKeqvb5eG_4PXn3MO4qU7Tfh5k8FmanP2ni5TiG9eCttDyFExM5zA2-be4LPjRa8naCkEaDsYqaCm8paXKV26M1SJ3PxIQq_PKlZFZow33xaZ4-Em5mBoUoTyXGFiLvtCWji0Rj9fC63JP4W8</reference>
+  <id>672b8d9bc24ea76bce5de4dc454649902726dc90</id>
+  <photo>
+   <photo_reference>CnRnAAAAYVs8kmCyFx2OFvEKnkj_G9TafAYCM0aTgWs8rx23W6EieYKJPCtTQaROrf7c385zf9WxIKJKGeqc-iqM88c7CtTad92EhUqcJhptO9XRTJfP36ZSiw49MvpXW3PxpiZA4K5ckCmce8Y_UuY2WeLbyhIQRWRouObDpanuu8JKtNon7BoUVehQ9toUu1yA0QTtk6AvRRE8a6g</photo_reference>
+   <width>1728</width>
+   <height>1152</height>
+  </photo>
+ </result>
+ <result>
+  <name>Pure Nightclub</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1003 Saint Catherine Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5171560</lat>
+    <lng>-73.5574020</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CnRtAAAAz5pIeMeRAVfbE4fzGN61iuiB5WzBLXuAhEwcg-EhOzslqLsOzu5fObMZIP0TKMsalot7Ee4BlREKTvP1JwMcs4hWEzl4gQxSgpyVrLZlx8BEiRjRVQ8GvgvSIqUu9P26DZlOVf1e3NVd_nN-vra0WxIQUsYqq417x4E7WctjhVufihoUpzmwmyWHHpFsGKfaFcItfSfRm-I</reference>
+  <id>b6f3f668189f14814115c91d6c89354f21ce1802</id>
+  <photo>
+   <photo_reference>CoQBeQAAAOKe5AqbAzsMJkHQoeE_vOK6-3uDZ4-oeM3GzM6SbUnJLYAiqjqfXgdpotf5ZFDNT4xMJYZYgugxXwElEl6qvlZ12uofK4V-mOvLTGs5ESH9SLNjj1wFFke-j_ECKbLXKxKBqBVbs2wn2aQjnx1d-C6GG9E0565bVudi5CR4YbWNEhCaRJA77aeEpi9GBCRP7v8XGhRsvLpMlVNymC9O0AvV1uq0K5Peaw</photo_reference>
+   <width>604</width>
+   <height>404</height>
+  </photo>
+ </result>
+ <result>
+  <name>BLVD 44 CLUB</name>
+  <type>cafe</type>
+  <type>food</type>
+  <type>establishment</type>
+  <formatted_address>4467 Saint Laurent Boulevard, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.5197050</lat>
+    <lng>-73.5851730</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png</icon>
+  <reference>CnRrAAAAlXecqYZ4SInBTxD5DRdnsnBf08Y3g2J_l91QI-SWnOvTFHKibfCXV4t_LxssXEa9x-H3vFJevCSKQTd_P0Bi5MK5kr1raZWiJn4wbKvwQa8oZTkVjYTgvnRL5cbTNltp0Hbsyhi8L554vnMES33uvhIQtOxegmA2OoIMwVS7WrQvmRoUN_j7eiuVMl-nVoPiw2ZiP4xtOqg</reference>
+  <id>a4874b7fffd704358fc73e3202e8350d6a5d1dd7</id>
+  <opening_hours>
+   <open_now>false</open_now>
+  </opening_hours>
+ </result>
+ <result>
+  <name>Club Electric Avenue</name>
+  <type>night_club</type>
+  <type>establishment</type>
+  <formatted_address>1469 Crescent Street, Montreal, QC, Canada</formatted_address>
+  <geometry>
+   <location>
+    <lat>45.4980400</lat>
+    <lng>-73.5771800</lng>
+   </location>
+  </geometry>
+  <rating>3.5</rating>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png</icon>
+  <reference>CoQBcgAAAC9memK_dFtFs3JWSztVyXE_sR_V_FFaObmwcmTf7DoiPx6edQEqSciiO8MkycJaBvpv9mJnjgcQULZfetv6iRpgYHHR4kneQ5lg3osKAPT3WVLhJ3J3Tr0p5Qgb0nBGR0uOy1NcqMk4BXDT2PJK-Nf-QMrtlHV2N4qxKcvpbUJwEhAh4WSRejkxy2FewNVaT4AoGhQPMnzu8Ix70g9hDoA44iumG2HJVQ</reference>
+  <id>8ba1c2d19086e8c32a2a6735cbea11521a879a49</id>
+ </result>
+ <html_attribution>Listings by &lt;a href=&quot;http://www.yellowpages.ca/&quot;&gt;YellowPages.ca&lt;/a&gt;</html_attribution>
+ <next_page_token>CkQ9AAAA6F_zfGOKxs9d4yRVQXDOKYUZeIu6dRruwyHlFI-ZJfiPs9OZ8OY-4m090K5EB9m24dU1H8GGnfJ7vhhurP8V4hIQqBluWeyjWPV6qUfkm_fdBBoUwNVpUg3E7F3Isrbxki3p4SbwDmk</next_page_token>
+</PlaceSearchResponse>

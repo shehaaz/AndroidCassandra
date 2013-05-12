@@ -21,6 +21,7 @@ import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.feed.FeedFactory;
 import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
+import com.android.cassandra.droidbargain.profile.User;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -34,6 +35,8 @@ public class StoreList extends ListActivity {
 	private ProgressDialog pDialog;
 
 	private Intent intent;
+	
+	private User bargain_user;
 
 
 
@@ -41,6 +44,8 @@ public class StoreList extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stores);
+		
+		bargain_user = (User) getIntent().getSerializableExtra("USER_PROFILE");
 
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -66,13 +71,19 @@ public class StoreList extends ListActivity {
 			finish();
 			break;
 		case R.id.open_profile:
-			startActivity(new Intent(this, Profile.class));
+			Intent profileIntent = new Intent(this, Profile.class);
+			profileIntent.putExtra("USER_PROFILE", bargain_user);
+			startActivity(profileIntent);
 			return true;
 		case R.id.open_stores:
-			startActivity(new Intent(this, StoreList.class));
+			Intent storeIntent = new Intent(this, StoreList.class);
+			storeIntent.putExtra("USER_PROFILE", bargain_user);
+			startActivity(storeIntent);
 			return true;
 		case R.id.open_camera:
-			startActivity(new Intent(this, InputActivity.class));
+			Intent postIntent = new Intent(this, InputActivity.class);
+			postIntent.putExtra("USER_PROFILE", bargain_user);
+			startActivity(postIntent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

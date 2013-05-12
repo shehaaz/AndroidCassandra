@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.android.cassandra.droidbargain.R.id;
 import com.android.cassandra.droidbargain.R.layout;
 import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
+import com.android.cassandra.droidbargain.profile.User;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -50,15 +52,20 @@ public class InputActivity extends Activity {
 	private Calendar calendar;
 	private Context appContext;
 	private AlertDialog.Builder alertDialogBuilder;
+	private User bargain_user;
+	private String user_ID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_input);
 
+		bargain_user = (User) getIntent().getSerializableExtra("USER_PROFILE");
+		user_ID = bargain_user.getUser_ID();
+
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		
+
 		alertDialogBuilder = new AlertDialog.Builder(this);
 
 		calendar = Calendar.getInstance();
@@ -98,7 +105,7 @@ public class InputActivity extends Activity {
 		buttonDB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+
 				String postTitle = title.getText().toString();
 				String postBody = body.getText().toString();
 				String postPrice = price.getText().toString();
@@ -119,7 +126,15 @@ public class InputActivity extends Activity {
 						client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts/"+storeID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
 							@Override
 							public void onSuccess(String response) {
-								System.out.println("Success HTTP PUT");
+								Log.d("POST:","Success HTTP PUT to POST ColumnFamily");
+
+							}
+						});
+
+						client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts_by_user/"+user_ID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(String response) {
+								Log.d("POST:","Success HTTP PUT to POSTS_BY_USER ColumnFamily");
 								Intent i = new Intent(context, FeedActivity.class);
 								i.putExtra("STORE_ID",storeID);
 								startActivity(i);
@@ -131,7 +146,7 @@ public class InputActivity extends Activity {
 						System.out.println("Failed HTTP PUT");
 					} 
 				}
-				
+
 				else{
 					alertDialogBuilder.setTitle("Please Fill all Fields");
 					alertDialogBuilder
@@ -140,10 +155,10 @@ public class InputActivity extends Activity {
 						public void onClick(DialogInterface dialog,int id) {
 							dialog.cancel();
 						}
-					  });
+					});
 					// create alert dialog
 					AlertDialog alertDialog = alertDialogBuilder.create();
-	 
+
 					// show it
 					alertDialog.show();
 				}

@@ -19,5 +19,8 @@
     <string name="title_store_deals">Deals</string>
     <string name="not_support_gps">GPS provider not supported</string>
     <string name="not_support_network">Network provider not supported</string>
+    <string name="app_id">581713638525660</string>
+    <string name="profile_picture">profile picture</string>
+    <string name="profile_name">Shehaaz Saif</string>
 
 </resources>

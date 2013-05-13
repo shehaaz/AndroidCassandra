@@ -120,6 +120,7 @@ public class InputActivity extends Activity {
 						jsonParams.put("body", postBody);
 						jsonParams.put("price", postPrice);
 						jsonParams.put("location", location);
+						jsonParams.put("user", bargain_user.getName());
 						StringEntity entity = new StringEntity(jsonParams.toString());
 						System.out.println(jsonParams.toString());
 

@@ -11,16 +11,18 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 	private String desc;
 	private String price;
 	private String location;
+	private String user_name;
 
 
 	public FeedFactory(String timeStamp, String title, String desc,
-			String price, String location)
+			String price, String location, String user_name)
 	{
 		this.timeStamp = timeStamp;
 		this.title = title;
 		this.desc = desc;
 		this.price = price;
 		this.location = location;
+		this.user_name = user_name;
 	}
 
 	public String getTimeStamp(){
@@ -42,6 +44,10 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 	public String getLocation(){
 		return location;
 	}
+	
+	public String getUsername(){
+		return user_name;
+	}
 
 	public FeedFactory(Parcel source){
 		timeStamp = source.readString();
@@ -49,6 +55,7 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 		desc = source.readString();
 		price = source.readString();
 		location = source.readString();
+		user_name = source.readString();
 	}
 
 	@Override
@@ -59,6 +66,7 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 		dest.writeString(desc);
 		dest.writeString(price);
 		dest.writeString(location);	
+		dest.writeString(user_name);
 	}
 
 	public static final Creator<FeedFactory> CREATOR = new Creator<FeedFactory>() {

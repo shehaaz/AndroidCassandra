@@ -137,7 +137,8 @@ public class StoreList extends ListActivity {
 							String desc = currentPostObject.getString("body"); 
 							String price = currentPostObject.getString("price");
 							String location = currentPostObject.getString("location");
-							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location); 	
+							String user = currentPostObject.getString("user");
+							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location,user); 	
 							store.addDeal(currFeedObj);
 						}
 					} catch (JSONException e) {

@@ -39,6 +39,7 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 			holder.desc = (TextView) row.findViewById(R.id.feed_desc);
 			holder.price = (TextView) row.findViewById(R.id.feed_price);
 			holder.location = (TextView) row.findViewById(R.id.feed_location);
+			holder.user = (TextView) row.findViewById(R.id.feed_posted_by);
 
 			row.setTag(holder);
 		}
@@ -51,6 +52,7 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 		holder.desc.setText(feed.getDesc());
 		holder.price.setText(feed.getPrice()+"$");
 		holder.location.setText(feed.getLocation());
+		holder.user.setText("Posted By: "+feed.getUsername());
 
 		return row;
 	}
@@ -60,6 +62,7 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 		TextView desc;
 		TextView price;
 		TextView location;
+		TextView user;
 	}
 
 }

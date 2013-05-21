@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 
 public class StoreFactory implements Parcelable {
 
@@ -14,7 +14,7 @@ public class StoreFactory implements Parcelable {
 	private String address;
 	private double lat;
 	private double lng;
-	ArrayList<FeedFactory> deal_data = new ArrayList<FeedFactory>();
+	ArrayList<DealFactory> deal_data = new ArrayList<DealFactory>();
 
 
 
@@ -33,7 +33,7 @@ public class StoreFactory implements Parcelable {
 		address = source.readString();
 		lat = source.readDouble();
 		lng = source.readDouble();
-		source.readTypedList(deal_data, FeedFactory.CREATOR);	
+		source.readTypedList(deal_data, DealFactory.CREATOR);	
 	}
 	
 	@Override
@@ -79,11 +79,11 @@ public class StoreFactory implements Parcelable {
 		return lat;
 	}	
 
-	public void addDeal(FeedFactory pDeal) {
+	public void addDeal(DealFactory pDeal) {
 		deal_data.add(pDeal);
 	}	
 
-	public ArrayList<FeedFactory> getDeal_data(){
+	public ArrayList<DealFactory> getDeal_data(){
 		return deal_data;
 	}
 

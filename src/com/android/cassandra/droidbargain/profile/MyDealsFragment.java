@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedAdapter;
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 
 public class MyDealsFragment extends ListFragment {
 
-	ArrayList<FeedFactory> myDeals;
+	ArrayList<DealFactory> myDeals;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.activity_feed,container, false);

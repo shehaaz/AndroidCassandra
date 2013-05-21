@@ -54,6 +54,7 @@ public class InputActivity extends Activity {
 	private AlertDialog.Builder alertDialogBuilder;
 	private User bargain_user;
 	private String user_ID;
+	private StoreFactory store;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class InputActivity extends Activity {
 			public void onItemSelected(AdapterView<?> adapterView, View view,
 					int position, long id) {
 
-				StoreFactory store = adapter.getItem(position);
+				store = adapter.getItem(position);
 				storeID = store.getStoreID();
 				location = store.getStoreTitle();
 
@@ -137,7 +138,7 @@ public class InputActivity extends Activity {
 							public void onSuccess(String response) {
 								Log.d("POST:","Success HTTP PUT to POSTS_BY_USER ColumnFamily");
 								Intent i = new Intent(context, FeedActivity.class);
-								i.putExtra("STORE_ID",storeID);
+								i.putExtra("THE_STORE",store);
 								startActivity(i);
 								finish();
 							}

@@ -18,7 +18,7 @@ import android.widget.ListView;
 
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.android.cassandra.droidbargain.profile.User;
@@ -35,7 +35,7 @@ public class StoreList extends ListActivity {
 	private ProgressDialog pDialog;
 
 	private Intent intent;
-	
+
 	private User bargain_user;
 
 
@@ -44,7 +44,7 @@ public class StoreList extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stores);
-		
+
 		bargain_user = (User) getIntent().getSerializableExtra("USER_PROFILE");
 
 		final ActionBar actionBar = getActionBar();
@@ -98,60 +98,10 @@ public class StoreList extends ListActivity {
 		intent = new Intent(this, StoreActivity.class);
 
 		store = store_data.get(position);
+		intent.putExtra("THE_STORE", store);
 
-
-		downloadData(store.getStoreID());
+		startActivity(intent);
 
 
 	}
-
-	private void initializeDialog() {
-		pDialog = new ProgressDialog(this);
-		pDialog.setMessage("Loading...");
-		pDialog.setIndeterminate(false);
-		pDialog.setCancelable(false);
-		pDialog.show();	
-	}
-
-	private void downloadData(String store_id) {
-
-		AsyncHttpClient cassandra_client = new AsyncHttpClient();
-		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store_id,new AsyncHttpResponseHandler() {
-			@Override
-			public void onSuccess(String  response) {
-
-				if(response != null){
-
-					JSONObject jObject;
-					try {
-						jObject = new JSONObject(response);
-
-						Iterator<?> keys = jObject.keys();
-						while(keys.hasNext()){
-							String currentTimestamp = (String) keys.next();
-
-							String postString = jObject.getString(currentTimestamp);
-							JSONObject currentPostObject = new JSONObject(postString);
-
-							String title = currentPostObject.getString("title");
-							String desc = currentPostObject.getString("body"); 
-							String price = currentPostObject.getString("price");
-							String location = currentPostObject.getString("location");
-							String user = currentPostObject.getString("user");
-							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location,user); 	
-							store.addDeal(currFeedObj);
-						}
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
-				intent.putExtra("THE_STORE", store);
-				startActivity(intent);
-			}
-		});
-
-	}
-
 }

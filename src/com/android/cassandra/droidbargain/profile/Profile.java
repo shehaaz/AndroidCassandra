@@ -19,7 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.stores.StoreList;
 import com.loopj.android.http.AsyncHttpClient;
@@ -30,7 +30,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 	private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 	private static ViewPager mViewPager;
 	private User bargain_user;
-	protected static ArrayList<FeedFactory> user_deal_data;
+	protected static ArrayList<DealFactory> user_deal_data;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +151,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 
 	private void downloadData(String user_id) {
 
-		user_deal_data = new ArrayList<FeedFactory>();
+		user_deal_data = new ArrayList<DealFactory>();
 
 		AsyncHttpClient cassandra_client = new AsyncHttpClient();
 		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_user/"+user_id,new AsyncHttpResponseHandler() {
@@ -177,7 +177,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 							String price = currentPostObject.getString("price");
 							String location = currentPostObject.getString("location");
 							String user = currentPostObject.getString("user");
-							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location,user); 	
+							DealFactory currFeedObj = new DealFactory(currentTimestamp, title, desc, price, location,user); 	
 							user_deal_data.add(currFeedObj);
 						}
 						

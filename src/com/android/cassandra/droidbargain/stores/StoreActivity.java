@@ -12,7 +12,7 @@ import com.android.cassandra.droidbargain.R.layout;
 import com.android.cassandra.droidbargain.R.menu;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.feed.FeedAdapter;
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 import com.android.cassandra.droidbargain.input.InputActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.loopj.android.http.AsyncHttpClient;

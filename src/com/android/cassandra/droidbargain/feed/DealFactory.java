@@ -3,7 +3,7 @@ package com.android.cassandra.droidbargain.feed;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
+public class DealFactory implements Parcelable, Comparable<DealFactory> {
 
 
 	private String timeStamp;
@@ -14,7 +14,7 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 	private String user_name;
 
 
-	public FeedFactory(String timeStamp, String title, String desc,
+	public DealFactory(String timeStamp, String title, String desc,
 			String price, String location, String user_name)
 	{
 		this.timeStamp = timeStamp;
@@ -49,7 +49,7 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 		return user_name;
 	}
 
-	public FeedFactory(Parcel source){
+	public DealFactory(Parcel source){
 		timeStamp = source.readString();
 		title = source.readString();
 		desc = source.readString();
@@ -69,14 +69,14 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 		dest.writeString(user_name);
 	}
 
-	public static final Creator<FeedFactory> CREATOR = new Creator<FeedFactory>() {
+	public static final Creator<DealFactory> CREATOR = new Creator<DealFactory>() {
 
-		public FeedFactory createFromParcel(Parcel source) {
-			return new FeedFactory(source);
+		public DealFactory createFromParcel(Parcel source) {
+			return new DealFactory(source);
 		}
 
-		public FeedFactory[] newArray(int size) {
-			return new FeedFactory[size];
+		public DealFactory[] newArray(int size) {
+			return new DealFactory[size];
 		}
 	};
 
@@ -88,8 +88,8 @@ public class FeedFactory implements Parcelable, Comparable<FeedFactory> {
 	}
 
 	@Override
-	public int compareTo(FeedFactory another) {
-		Double compareQuantity = Double.parseDouble(((FeedFactory) another).getTimeStamp()); 
+	public int compareTo(DealFactory another) {
+		Double compareQuantity = Double.parseDouble(((DealFactory) another).getTimeStamp()); 
 		 
 		//descending order
 		return (int) (compareQuantity -  Double.parseDouble(this.getTimeStamp()));

@@ -10,14 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class FeedAdapter extends ArrayAdapter<FeedFactory>{
+public class FeedAdapter extends ArrayAdapter<DealFactory>{
 	
 	Context context;
 	int layoutResourceId;
-	ArrayList<FeedFactory> feedFactory;
+	ArrayList<DealFactory> feedFactory;
 
 	public FeedAdapter(Context context, int textViewResourceId,
-			ArrayList<FeedFactory> feed_data) {
+			ArrayList<DealFactory> feed_data) {
 		super(context, textViewResourceId, feed_data);
 		
 		this.context = context;
@@ -47,7 +47,7 @@ public class FeedAdapter extends ArrayAdapter<FeedFactory>{
 			holder = (FeedHolder)row.getTag();
 		}
 		//For every item in the list. set Title, address and rating
-		FeedFactory feed = feedFactory.get(position);
+		DealFactory feed = feedFactory.get(position);
 		holder.title.setText(feed.getTitle());
 		holder.desc.setText(feed.getDesc());
 		holder.price.setText(feed.getPrice()+"$");

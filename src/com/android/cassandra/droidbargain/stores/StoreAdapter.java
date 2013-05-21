@@ -3,7 +3,7 @@ package com.android.cassandra.droidbargain.stores;
 import java.util.ArrayList;
 
 import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 
 
 

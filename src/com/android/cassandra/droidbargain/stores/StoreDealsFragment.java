@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedAdapter;
-import com.android.cassandra.droidbargain.feed.FeedFactory;
+import com.android.cassandra.droidbargain.feed.DealFactory;
 
 public class StoreDealsFragment extends ListFragment {
 	
@@ -35,7 +35,7 @@ public class StoreDealsFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		ArrayList<FeedFactory> store_deals = store.getDeal_data();
+		ArrayList<DealFactory> store_deals = store.getDeal_data();
 		Collections.sort(store_deals);
 		FeedAdapter adapter =  new FeedAdapter(getActivity(), R.layout.feed_item, store_deals);
 		setListAdapter(adapter);

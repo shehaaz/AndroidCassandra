@@ -50,7 +50,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 public class FeedActivity extends ListActivity implements LocationListener {
 
 	private Context appContext;
-	public static ArrayList<FeedFactory> feed_data = new ArrayList<FeedFactory>();
+	private ArrayList<DealFactory> feed_data = new ArrayList<DealFactory>();
+	private ArrayList<DealFactory> temp_deal_data = new ArrayList<DealFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
 	private String userLatLng;
 	private LocationManager locationManager;
@@ -99,16 +100,17 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 		// new GetUserLocation(this, mLocationManager).getUserLocation();
 		//"45.49515,-73.577558";
-		userLatLng = new GetUserLocation(this, mLocationManager).getUserLocation();
+		userLatLng = "45.49515,-73.577558";
 
 
-		if(!(this.getIntent().hasExtra("STORE_ID"))){
+		if(!(this.getIntent().hasExtra("THE_STORE"))){
 			initializeDialog();
 			downloadStores();
 		}
 		else {
-			String store_id = getIntent().getStringExtra("STORE_ID");
-			downloadStoreData(store_id);
+			Bundle bundle = getIntent().getExtras();
+			StoreFactory store = (StoreFactory)bundle.getParcelable("THE_STORE");
+			downloadStoreData(store);
 		}
 	}
 
@@ -172,10 +174,10 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		pDialog.show();	
 	}
 
-	private void downloadStoreData(String store_id) {
+	private void downloadStoreData(StoreFactory store) {
 
 		AsyncHttpClient cassandra_client = new AsyncHttpClient();
-		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store_id,new AsyncHttpResponseHandler() {
+		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store.getStoreID(),new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(String  response) {
 
@@ -197,7 +199,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 							String price = currentPostObject.getString("price");
 							String location = currentPostObject.getString("location");
 							String user = currentPostObject.getString("user");
-							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location,user); 	
+							DealFactory currFeedObj = new DealFactory(currentTimestamp, title, desc, price, location,user); 	
 							feed_data.add(currFeedObj);
 						}
 						Collections.sort(feed_data);
@@ -234,10 +236,47 @@ public class FeedActivity extends ListActivity implements LocationListener {
 						Double lat = Double.parseDouble(location.getString("lat"));
 						Double lng = Double.parseDouble(location.getString("lng"));
 						String address = resultsArray.getJSONObject(i).getString("vicinity");
-						final StoreFactory newStore = new StoreFactory(id,name,address,lat,lng);
 
+						final StoreFactory newStore = new StoreFactory(id,name,address,lat,lng);
+						AsyncHttpClient cassandra_client = new AsyncHttpClient();
+
+						cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+newStore.getStoreID(),new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(String  response) {
+
+								if(response != null){
+
+									JSONObject jObject;
+									try {
+										jObject = new JSONObject(response);
+
+										Iterator<?> keys = jObject.keys();
+										while(keys.hasNext()){
+											String currentTimestamp = (String) keys.next();
+
+											String postString = jObject.getString(currentTimestamp);
+											JSONObject currentPostObject = new JSONObject(postString);
+
+											String title = currentPostObject.getString("title");
+											String desc = currentPostObject.getString("body"); 
+											String price = currentPostObject.getString("price");
+											String location = currentPostObject.getString("location");
+											String user = currentPostObject.getString("user");
+											DealFactory currDealObj = new DealFactory(currentTimestamp, title, desc, price, location,user); 
+											newStore.addDeal(currDealObj);
+											feed_data.add(currDealObj);
+										}
+										Collections.sort(feed_data);
+										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
+										setListAdapter(adapter);
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							}
+						});
 						store_data.add(newStore);
-						downloadStoreData(id);
 					}
 					pDialog.dismiss();
 				}

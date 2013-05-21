@@ -150,41 +150,46 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 	}
 
 	private void downloadData(String user_id) {
-		
-		 user_deal_data = new ArrayList<FeedFactory>();
+
+		user_deal_data = new ArrayList<FeedFactory>();
 
 		AsyncHttpClient cassandra_client = new AsyncHttpClient();
 		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_user/"+user_id,new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(String  response) {
 
-				JSONObject jObject;
-				try {
-					jObject = new JSONObject(response);
+				if(response != null){
 
-					Iterator<?> keys = jObject.keys();
-					while(keys.hasNext()){
+					JSONObject jObject;
+					try {
+						jObject = new JSONObject(response);
 
-						String currentTimestamp = (String) keys.next();
+						Iterator<?> keys = jObject.keys();
+						while(keys.hasNext()){
 
-						String postString = jObject.getString(currentTimestamp);
-						JSONObject currentPostObject = new JSONObject(postString);
+							String currentTimestamp = (String) keys.next();
 
-						String title = currentPostObject.getString("title");
-						String desc = currentPostObject.getString("body"); 
-						String price = currentPostObject.getString("price");
-						String location = currentPostObject.getString("location");
-						String user = currentPostObject.getString("user");
-						FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location,user); 	
-						user_deal_data.add(currFeedObj);
+							String postString = jObject.getString(currentTimestamp);
+							JSONObject currentPostObject = new JSONObject(postString);
+
+							String title = currentPostObject.getString("title");
+							String desc = currentPostObject.getString("body"); 
+							String price = currentPostObject.getString("price");
+							String location = currentPostObject.getString("location");
+							String user = currentPostObject.getString("user");
+							FeedFactory currFeedObj = new FeedFactory(currentTimestamp, title, desc, price, location,user); 	
+							user_deal_data.add(currFeedObj);
+						}
+						
 					}
-					mViewPager.setAdapter(mAppSectionsPagerAdapter);
+					catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-				catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				mViewPager.setAdapter(mAppSectionsPagerAdapter);
 			}
+			
 		});
 
 	}

@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_input">Bargain</string>
+    <string name="album_name">Bargain</string>
+    <string name="cannot">cannot</string>
     <string name="open_profile">Open Profile</string>
     <string name="open_camera">Open Camera</string>
     <string name="open_stores">Open Stores</string>

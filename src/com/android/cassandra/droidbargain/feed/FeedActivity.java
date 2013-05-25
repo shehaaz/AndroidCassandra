@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.input.InputActivity;
+import com.android.cassandra.droidbargain.input.PhotoIntentActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.android.cassandra.droidbargain.profile.User;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
@@ -137,7 +137,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			startActivity(storeIntent);
 			return true;
 		case R.id.open_camera:
-			Intent postIntent = new Intent(this, InputActivity.class);
+			Intent postIntent = new Intent(this, PhotoIntentActivity.class);
 			postIntent.putExtra("USER_PROFILE", bargain_user);
 			startActivity(postIntent);
 			return true;

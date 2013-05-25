@@ -8,19 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".InputActivity" >
 
-    <EditText
-        android:id="@+id/post_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:ems="10"
-        android:hint="title"
-        android:inputType="textPersonName" >
-
-        <requestFocus />
-    </EditText>
 
     <EditText
         android:id="@+id/post_body"
@@ -30,7 +17,10 @@
         android:layout_below="@+id/editText5"
         android:layout_marginTop="33dp"
         android:ems="10"
-        android:hint="Description" />
+        android:hint="Description" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/post_price"
@@ -45,16 +35,16 @@
     <Spinner
         android:id="@+id/miSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
     </Spinner>
 
     <Button
-        android:id="@+id/putindb"
+        android:id="@+id/send_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:text="Post" />
+        android:text="Let's take a pic" />
 
 </TableLayout>

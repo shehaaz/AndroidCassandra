@@ -2,13 +2,18 @@ package com.android.cassandra.droidbargain.feed;
 
 import java.util.ArrayList;
 
-import com.android.cassandra.droidbargain.R;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.cassandra.droidbargain.R;
 
 public class FeedAdapter extends ArrayAdapter<DealFactory>{
 	
@@ -35,7 +40,7 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 			row = inflater.inflate(layoutResourceId, parent, false);
 
 			holder = new FeedHolder();
-			holder.title = (TextView) row.findViewById(R.id.feed_title);
+			holder.image = (ImageView) row.findViewById(R.id.feed_image);
 			holder.desc = (TextView) row.findViewById(R.id.feed_desc);
 			holder.price = (TextView) row.findViewById(R.id.feed_price);
 			holder.location = (TextView) row.findViewById(R.id.feed_location);
@@ -48,7 +53,9 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 		}
 		//For every item in the list. set Title, address and rating
 		DealFactory feed = feedFactory.get(position);
-		holder.title.setText(feed.getImage());
+		byte [] output = Base64.decode(feed.getImage(), Base64.DEFAULT);
+		Bitmap outputImage = BitmapFactory.decodeByteArray(output, 0, output.length);
+		holder.image.setImageBitmap(outputImage);
 		holder.desc.setText(feed.getDesc());
 		holder.price.setText(feed.getPrice()+"$");
 		holder.location.setText(feed.getLocation());
@@ -58,7 +65,7 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 	}
 
 	static class FeedHolder{
-		TextView title;
+		ImageView image;
 		TextView desc;
 		TextView price;
 		TextView location;

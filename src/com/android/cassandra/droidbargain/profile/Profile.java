@@ -172,12 +172,12 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 							String postString = jObject.getString(currentTimestamp);
 							JSONObject currentPostObject = new JSONObject(postString);
 
-							String title = currentPostObject.getString("title");
+							String image = currentPostObject.getString("image");
 							String desc = currentPostObject.getString("body"); 
 							String price = currentPostObject.getString("price");
 							String location = currentPostObject.getString("location");
 							String user = currentPostObject.getString("user");
-							DealFactory currFeedObj = new DealFactory(currentTimestamp, title, desc, price, location,user); 	
+							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 	
 							user_deal_data.add(currFeedObj);
 						}
 						

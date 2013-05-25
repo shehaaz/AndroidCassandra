@@ -247,10 +247,10 @@ containing a value of this type.
         public static final int editText4=0x7f040009;
         public static final int editText5=0x7f040005;
         public static final int feed_desc=0x7f040021;
+        public static final int feed_image=0x7f040020;
         public static final int feed_location=0x7f040023;
         public static final int feed_posted_by=0x7f040024;
         public static final int feed_price=0x7f040022;
-        public static final int feed_title=0x7f040020;
         public static final int imageView1=0x7f040028;
         public static final int large=0x7f040002;
         public static final int miSpinner=0x7f040007;

@@ -100,10 +100,10 @@ int id editText2 0x7f040004
 int id editText4 0x7f040009
 int id editText5 0x7f040005
 int id feed_desc 0x7f040021
+int id feed_image 0x7f040020
 int id feed_location 0x7f040023
 int id feed_posted_by 0x7f040024
 int id feed_price 0x7f040022
-int id feed_title 0x7f040020
 int id imageView1 0x7f040028
 int id large 0x7f040002
 int id miSpinner 0x7f040007

@@ -41,17 +41,15 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 	private Context appContext;
 	private ArrayList<DealFactory> feed_data = new ArrayList<DealFactory>();
-	private ArrayList<DealFactory> temp_deal_data = new ArrayList<DealFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
 	private String userLatLng;
-	private LocationManager locationManager;
-	private String provider;
 	private ProgressDialog pDialog;
 	private LocationManager mLocationManager;
 	private String user_Name;
 	private String user_ID;
 	private User bargain_user;
 	public static boolean downloadPhoto = true;
+	private String newPostTimestamp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -93,17 +91,22 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		userLatLng = new GetUserLocation(this, mLocationManager).getUserLocation();
 
 
-		if(!(this.getIntent().hasExtra("THE_STORE"))){
-			initializeDialog();
-			downloadStores();
-		}
-		else {
-			Bundle bundle = getIntent().getExtras();
-			StoreFactory store = (StoreFactory)bundle.getParcelable("THE_STORE");
-			downloadStoreData(store);
-		}
+		initializeDialog();
+		downloadStores();
+		
+//		if(!(this.getIntent().hasExtra("THE_STORE"))){
+//			initializeDialog();
+//			downloadStores();
+//		}
+//		else {
+//			Bundle bundle = getIntent().getExtras();
+//			StoreFactory store = (StoreFactory)bundle.getParcelable("THE_STORE");
+//			String timestamp = (String) bundle.getString("TIMESTAMP");
+//			initializeDialog();
+//			downloadPostedStoreData(store,timestamp);
+//		}
 	}
-
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,6 +133,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			Intent postIntent = new Intent(this, PhotoActivity.class);
 			postIntent.putExtra("USER_PROFILE", bargain_user);
 			startActivity(postIntent);
+			finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -164,47 +168,43 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		pDialog.show();	
 	}
 
-	private void downloadStoreData(StoreFactory store) {
-
-		AsyncHttpClient cassandra_client = new AsyncHttpClient();
-		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store.getStoreID(),new AsyncHttpResponseHandler() {
-			@Override
-			public void onSuccess(String  response) {
-
-				if(response != null){
-
-					JSONObject jObject;
-					try {
-						jObject = new JSONObject(response);
-
-						Iterator<?> keys = jObject.keys();
-						while(keys.hasNext()){
-							String currentTimestamp = (String) keys.next();
-
-							String postString = jObject.getString(currentTimestamp);
-							JSONObject currentPostObject = new JSONObject(postString);
-
-							String desc = currentPostObject.getString("body"); 
-							String price = currentPostObject.getString("price");
-							String location = currentPostObject.getString("location");
-							String user = currentPostObject.getString("user");
-							String image = currentPostObject.getString("image");
-							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 	
-							feed_data.add(currFeedObj);
-						}
-						Collections.sort(feed_data);
-						FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
-						setListAdapter(adapter);
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
-			}
-		});
-
-	}
+//	private void downloadPostedStoreData(StoreFactory store, String pTimestamp) {
+//		
+//		newPostTimestamp = pTimestamp;
+//
+//		AsyncHttpClient cassandra_client = new AsyncHttpClient();
+//		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store.getStoreID()+"/"+newPostTimestamp,new AsyncHttpResponseHandler() {
+//			@Override
+//			public void onSuccess(String  response) {
+//
+//				if(response != null){
+//
+//					JSONObject jObject;
+//					try {
+//							jObject = new JSONObject(response);
+//							
+//							String desc = jObject.getString("body"); 
+//							String price = jObject.getString("price");
+//							String location = jObject.getString("location");
+//							String user = jObject.getString("user");
+//							String image = jObject.getString("image");
+//							
+//							DealFactory currFeedObj = new DealFactory(newPostTimestamp, image, desc, price, location,user); 	
+//							//add at start of arraylist
+//							feed_data.add(0, currFeedObj);
+//						
+//						FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
+//						setListAdapter(adapter);
+//						pDialog.dismiss();
+//					} catch (JSONException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//
+//			}
+//		});
+//	}
 
 	private void downloadStores(){
 
@@ -247,12 +247,12 @@ public class FeedActivity extends ListActivity implements LocationListener {
 											String postString = jObject.getString(currentTimestamp);
 											JSONObject currentPostObject = new JSONObject(postString);
 
-											String title = currentPostObject.getString("title");
+											String image = currentPostObject.getString("image");
 											String desc = currentPostObject.getString("body"); 
 											String price = currentPostObject.getString("price");
 											String location = currentPostObject.getString("location");
 											String user = currentPostObject.getString("user");
-											DealFactory currDealObj = new DealFactory(currentTimestamp, title, desc, price, location,user); 
+											DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 
 											newStore.addDeal(currDealObj);
 											feed_data.add(currDealObj);
 										}
@@ -276,7 +276,6 @@ public class FeedActivity extends ListActivity implements LocationListener {
 				}
 			}
 		});
-
 	}
 
 

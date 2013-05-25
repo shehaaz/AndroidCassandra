@@ -67,8 +67,7 @@ public class PhotoActivity extends Activity {
 
 	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
 	private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
-	private ImageView mImageView;
-	private Bitmap mImageBitmap;
+
 
 	private static final String VIDEO_STORAGE_KEY = "viewvideo";
 	private static final String VIDEOVIEW_VISIBILITY_STORAGE_KEY = "videoviewvisibility";
@@ -130,25 +129,10 @@ public class PhotoActivity extends Activity {
 
 	private String setPic() {
 
-		/* There isn't enough memory to open up more than a couple camera photos */
-		/* So pre-scale the target bitmap into which the file is decoded */
 
-		/* Get the size of the ImageView */
-		int targetW = mImageView.getWidth();
-		int targetH = mImageView.getHeight();
-
-		/* Get the size of the image */
 		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-		bmOptions.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-		int photoW = bmOptions.outWidth;
-		int photoH = bmOptions.outHeight;
 
-		/* Figure out which way needs to be reduced less */
-		int scaleFactor = 1;
-		if ((targetW > 0) || (targetH > 0)) {
-			scaleFactor = Math.min(photoW/targetW, photoH/targetH);	
-		}
+		int scaleFactor = 4;
 
 		/* Set bitmap options to scale the image decode target */
 		bmOptions.inJustDecodeBounds = false;
@@ -326,7 +310,7 @@ public class PhotoActivity extends Activity {
 					jsonParams.put("user", bargain_user.getName());
 					jsonParams.put("image", base64Image);
 					StringEntity entity = new StringEntity(jsonParams.toString());
-					System.out.println(jsonParams.toString());
+
 
 					client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts/"+storeID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
 						@Override
@@ -342,6 +326,7 @@ public class PhotoActivity extends Activity {
 							Log.d("POST:","Success HTTP PUT to POSTS_BY_USER ColumnFamily");
 							Intent i = new Intent(context, FeedActivity.class);
 							i.putExtra("THE_STORE",store);
+							i.putExtra("TIMESTAMP", timestamp);
 							startActivity(i);
 							finish();
 						}
@@ -354,25 +339,6 @@ public class PhotoActivity extends Activity {
 			break;
 		} 	
 		} 
-	}
-
-	// Some lifecycle callbacks so that the image can survive orientation change
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
-		outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY, (mImageBitmap != null) );
-		super.onSaveInstanceState(outState);
-	}
-
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
-		mImageView.setImageBitmap(mImageBitmap);
-		mImageView.setVisibility(
-				savedInstanceState.getBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY) ? 
-						ImageView.VISIBLE : ImageView.INVISIBLE
-				);
 	}
 
 	/**

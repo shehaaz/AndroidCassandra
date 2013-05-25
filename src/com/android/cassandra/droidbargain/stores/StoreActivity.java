@@ -1,29 +1,8 @@
 package com.android.cassandra.droidbargain.stores;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.R.layout;
-import com.android.cassandra.droidbargain.R.menu;
-import com.android.cassandra.droidbargain.feed.FeedActivity;
-import com.android.cassandra.droidbargain.feed.FeedAdapter;
-import com.android.cassandra.droidbargain.feed.DealFactory;
-import com.android.cassandra.droidbargain.input.InputActivity;
-import com.android.cassandra.droidbargain.profile.Profile;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-
-import android.os.Bundle;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -31,6 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.android.cassandra.droidbargain.R;
 
 public class StoreActivity extends FragmentActivity implements ActionBar.TabListener {
 

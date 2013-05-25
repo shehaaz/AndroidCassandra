@@ -44,7 +44,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 
-public class PhotoIntentActivity extends Activity {
+public class PhotoActivity extends Activity {
 
 	private Context context;
 	private EditText body;

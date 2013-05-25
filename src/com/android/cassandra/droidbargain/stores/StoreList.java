@@ -1,10 +1,6 @@
 package com.android.cassandra.droidbargain.stores;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
@@ -18,12 +14,9 @@ import android.widget.ListView;
 
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
-import com.android.cassandra.droidbargain.feed.DealFactory;
-import com.android.cassandra.droidbargain.input.InputActivity;
+import com.android.cassandra.droidbargain.input.PhotoActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.android.cassandra.droidbargain.profile.User;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 
 public class StoreList extends ListActivity {
@@ -81,7 +74,7 @@ public class StoreList extends ListActivity {
 			startActivity(storeIntent);
 			return true;
 		case R.id.open_camera:
-			Intent postIntent = new Intent(this, InputActivity.class);
+			Intent postIntent = new Intent(this, PhotoActivity.class);
 			postIntent.putExtra("USER_PROFILE", bargain_user);
 			startActivity(postIntent);
 			return true;

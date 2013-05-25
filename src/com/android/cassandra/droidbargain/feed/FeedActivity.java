@@ -2,8 +2,6 @@ package com.android.cassandra.droidbargain.feed;
 
 
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,24 +14,16 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.input.PhotoIntentActivity;
+import com.android.cassandra.droidbargain.input.PhotoActivity;
 import com.android.cassandra.droidbargain.profile.Profile;
 import com.android.cassandra.droidbargain.profile.User;
 import com.android.cassandra.droidbargain.stores.StoreFactory;
@@ -137,7 +127,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			startActivity(storeIntent);
 			return true;
 		case R.id.open_camera:
-			Intent postIntent = new Intent(this, PhotoIntentActivity.class);
+			Intent postIntent = new Intent(this, PhotoActivity.class);
 			postIntent.putExtra("USER_PROFILE", bargain_user);
 			startActivity(postIntent);
 			return true;

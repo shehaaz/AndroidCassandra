@@ -20,7 +20,7 @@ import android.view.MenuItem;
 
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.DealFactory;
-import com.android.cassandra.droidbargain.input.InputActivity;
+import com.android.cassandra.droidbargain.input.PhotoActivity;
 import com.android.cassandra.droidbargain.stores.StoreList;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -91,7 +91,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 			startActivity(storeIntent);
 			return true;
 		case R.id.open_camera:
-			Intent postIntent = new Intent(this, InputActivity.class);
+			Intent postIntent = new Intent(this, PhotoActivity.class);
 			postIntent.putExtra("USER_PROFILE", bargain_user);
 			startActivity(postIntent);
 			return true;

@@ -326,7 +326,6 @@ public class PhotoActivity extends Activity {
 							Log.d("POST:","Success HTTP PUT to POSTS_BY_USER ColumnFamily");
 							Intent i = new Intent(context, FeedActivity.class);
 							i.putExtra("THE_STORE",store);
-							i.putExtra("TIMESTAMP", timestamp);
 							startActivity(i);
 							finish();
 						}

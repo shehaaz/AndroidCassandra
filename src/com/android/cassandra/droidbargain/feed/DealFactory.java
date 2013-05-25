@@ -7,18 +7,18 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 
 
 	private String timeStamp;
-	private String title;
+	private String image;
 	private String desc;
 	private String price;
 	private String location;
 	private String user_name;
 
 
-	public DealFactory(String timeStamp, String title, String desc,
+	public DealFactory(String timeStamp, String image, String desc,
 			String price, String location, String user_name)
 	{
 		this.timeStamp = timeStamp;
-		this.title = title;
+		this.image = image;
 		this.desc = desc;
 		this.price = price;
 		this.location = location;
@@ -29,8 +29,8 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 		return timeStamp;
 	}
 
-	public String getTitle(){
-		return title;
+	public String getImage(){
+		return image;
 	}
 
 	public String getDesc(){
@@ -51,7 +51,7 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 
 	public DealFactory(Parcel source){
 		timeStamp = source.readString();
-		title = source.readString();
+		image = source.readString();
 		desc = source.readString();
 		price = source.readString();
 		location = source.readString();
@@ -62,7 +62,7 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 	public void writeToParcel(Parcel dest, int flags) {
 
 		dest.writeString(timeStamp);
-		dest.writeString(title);
+		dest.writeString(image);
 		dest.writeString(desc);
 		dest.writeString(price);
 		dest.writeString(location);	

@@ -48,7 +48,7 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 		}
 		//For every item in the list. set Title, address and rating
 		DealFactory feed = feedFactory.get(position);
-		holder.title.setText(feed.getTitle());
+		holder.title.setText(feed.getImage());
 		holder.desc.setText(feed.getDesc());
 		holder.price.setText(feed.getPrice()+"$");
 		holder.location.setText(feed.getLocation());

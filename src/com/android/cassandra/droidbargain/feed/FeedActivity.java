@@ -184,12 +184,12 @@ public class FeedActivity extends ListActivity implements LocationListener {
 							String postString = jObject.getString(currentTimestamp);
 							JSONObject currentPostObject = new JSONObject(postString);
 
-							String title = currentPostObject.getString("title");
 							String desc = currentPostObject.getString("body"); 
 							String price = currentPostObject.getString("price");
 							String location = currentPostObject.getString("location");
 							String user = currentPostObject.getString("user");
-							DealFactory currFeedObj = new DealFactory(currentTimestamp, title, desc, price, location,user); 	
+							String image = currentPostObject.getString("image");
+							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 	
 							feed_data.add(currFeedObj);
 						}
 						Collections.sort(feed_data);

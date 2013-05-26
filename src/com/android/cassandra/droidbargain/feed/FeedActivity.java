@@ -2,6 +2,7 @@ package com.android.cassandra.droidbargain.feed;
 
 
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -14,12 +15,17 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.cassandra.droidbargain.R;
@@ -43,6 +49,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	private ArrayList<DealFactory> feed_data = new ArrayList<DealFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
 	public static ArrayList<DealFactory> user_deal_data;
+	public static Bitmap user_image;
 	private String userLatLng;
 	private ProgressDialog pDialog;
 	private LocationManager mLocationManager;
@@ -75,6 +82,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 								user_ID = user.getId();
 								downloadUserData(user_ID);
 								bargain_user = new User(user_Name, user_ID);
+								new DownloadImageTask().execute(bargain_user.getUserPhoto());
 							}
 						}
 					});
@@ -339,6 +347,27 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		super.onActivityResult(requestCode, resultCode, data);
 		Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+	}
+	
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+
+		protected Bitmap doInBackground(String... urls) {
+			String urldisplay = urls[0];
+			Bitmap mIcon11 = null;
+			try {
+				InputStream in = new java.net.URL(urldisplay).openStream();
+				mIcon11 = BitmapFactory.decodeStream(in);
+			} catch (Exception e) {
+				Log.e("Error", e.getMessage());
+				e.printStackTrace();
+			}
+			return mIcon11;
+		}
+
+		protected void onPostExecute(Bitmap result) {
+			user_image = result;
+		}
 	}
 
 }

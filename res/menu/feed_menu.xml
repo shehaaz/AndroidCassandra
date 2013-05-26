@@ -3,17 +3,17 @@
     <item
         android:id="@+id/open_camera"
         android:icon="@drawable/menu_camera2"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="ifRoom"
         android:title="@string/open_camera"/>
     <item
         android:id="@+id/open_stores"
         android:icon="@drawable/open_stores"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="ifRoom"
         android:title="@string/open_stores"/>
     <item
         android:id="@+id/open_profile"
         android:icon="@drawable/open_profile"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="ifRoom"
         android:title="@string/open_profile"/>
 
 </menu>

@@ -220,8 +220,10 @@ containing a value of this type.
         public static final int menu_camera=0x7f020025;
         public static final int menu_camera2=0x7f020026;
         public static final int open_profile=0x7f020027;
-        public static final int open_stores=0x7f020028;
-        public static final int search_bg_shadow=0x7f020029;
+        public static final int open_profile2=0x7f020028;
+        public static final int open_stores=0x7f020029;
+        public static final int open_stores2=0x7f02002a;
+        public static final int search_bg_shadow=0x7f02002b;
     }
     public static final class id {
         public static final int com_facebook_login_activity_progress_bar=0x7f04000d;

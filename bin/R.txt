@@ -75,8 +75,10 @@ int drawable list_venue_arrow 0x7f020024
 int drawable menu_camera 0x7f020025
 int drawable menu_camera2 0x7f020026
 int drawable open_profile 0x7f020027
-int drawable open_stores 0x7f020028
-int drawable search_bg_shadow 0x7f020029
+int drawable open_profile2 0x7f020028
+int drawable open_stores 0x7f020029
+int drawable open_stores2 0x7f02002a
+int drawable search_bg_shadow 0x7f02002b
 int id com_facebook_login_activity_progress_bar 0x7f04000d
 int id com_facebook_picker_activity_circle 0x7f04000c
 int id com_facebook_picker_checkbox 0x7f04000f

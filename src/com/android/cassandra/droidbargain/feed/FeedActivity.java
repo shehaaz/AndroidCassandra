@@ -42,6 +42,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	private Context appContext;
 	private ArrayList<DealFactory> feed_data = new ArrayList<DealFactory>();
 	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
+	public static ArrayList<DealFactory> user_deal_data;
 	private String userLatLng;
 	private ProgressDialog pDialog;
 	private LocationManager mLocationManager;
@@ -49,6 +50,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	private String user_ID;
 	private User bargain_user;
 	public static boolean downloadPhoto = true;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -69,9 +71,9 @@ public class FeedActivity extends ListActivity implements LocationListener {
 						public void onCompleted(GraphUser user, Response response) {
 							if (user!=null){
 
-								user_Name = user.getMiddleName()+" "+user.getLastName();
+								user_Name = user.getName();
 								user_ID = user.getId();
-
+								downloadUserData(user_ID);
 								bargain_user = new User(user_Name, user_ID);
 							}
 						}
@@ -127,7 +129,6 @@ public class FeedActivity extends ListActivity implements LocationListener {
 			Intent postIntent = new Intent(this, PhotoActivity.class);
 			postIntent.putExtra("USER_PROFILE", bargain_user);
 			startActivity(postIntent);
-			finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -160,6 +161,51 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		pDialog.setIndeterminate(false);
 		pDialog.setCancelable(false);
 		pDialog.show();	
+	}
+	
+	private void downloadUserData(String user_id) {
+
+		user_deal_data = new ArrayList<DealFactory>();
+
+		AsyncHttpClient cassandra_client = new AsyncHttpClient();
+		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_user/"+user_id,new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(String  response) {
+
+				if(response != null){
+
+					JSONObject jObject;
+					try {
+						jObject = new JSONObject(response);
+
+						Iterator<?> keys = jObject.keys();
+						while(keys.hasNext()){
+
+							String currentTimestamp = (String) keys.next();
+
+							String postString = jObject.getString(currentTimestamp);
+							JSONObject currentPostObject = new JSONObject(postString);
+
+							String image = currentPostObject.getString("image");
+							String desc = currentPostObject.getString("body"); 
+							String price = currentPostObject.getString("price");
+							String location = currentPostObject.getString("location");
+							String user = currentPostObject.getString("user");
+							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 	
+							user_deal_data.add(currFeedObj);
+						}
+						
+					}
+					catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}
+			
+		});
+
 	}
 
 	private void downloadStoreData() {
@@ -271,16 +317,15 @@ public class FeedActivity extends ListActivity implements LocationListener {
 						});
 						store_data.add(newStore);
 					}
-					pDialog.dismiss();
+					
 				}
 				catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				pDialog.dismiss();
 			}
-
 		});
-
 	}
 
 

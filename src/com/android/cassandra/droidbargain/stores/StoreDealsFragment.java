@@ -10,20 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.cassandra.droidbargain.R;
+import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.feed.FeedAdapter;
 import com.android.cassandra.droidbargain.feed.DealFactory;
 
 public class StoreDealsFragment extends ListFragment {
 	
 	private StoreFactory store;
+	private ArrayList<StoreFactory> store_data;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.activity_feed,container, false);
 		
-		Bundle bundle = getActivity().getIntent().getExtras();
-		store = (StoreFactory)bundle.getParcelable("THE_STORE");
-		
-
+		store_data = FeedActivity.store_data;
+		int store_index = (int) getActivity().getIntent().getIntExtra("THE_STORE_INDEX", 0);
+		store = store_data.get(store_index);
 		
 		return rootView;
 	}

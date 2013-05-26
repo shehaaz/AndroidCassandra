@@ -91,7 +91,7 @@ public class StoreList extends ListActivity {
 		intent = new Intent(this, StoreActivity.class);
 
 		store = store_data.get(position);
-		intent.putExtra("THE_STORE", store);
+		intent.putExtra("THE_STORE_INDEX", position);
 
 		startActivity(intent);
 

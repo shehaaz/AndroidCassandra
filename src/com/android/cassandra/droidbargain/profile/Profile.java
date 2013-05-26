@@ -20,6 +20,7 @@ import android.view.MenuItem;
 
 import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.DealFactory;
+import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.input.PhotoActivity;
 import com.android.cassandra.droidbargain.stores.StoreList;
 import com.loopj.android.http.AsyncHttpClient;
@@ -38,8 +39,8 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 		setContentView(R.layout.activity_profile);
 
 		bargain_user = (User) getIntent().getSerializableExtra("USER_PROFILE");
+		user_deal_data = FeedActivity.user_deal_data;
 
-		downloadData(bargain_user.getUser_ID());
 
 
 		final ActionBar actionBar = getActionBar();
@@ -64,7 +65,9 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 				.setTabListener(this));
 		actionBar.addTab(actionBar.newTab()
 				.setText(R.string.my_deals)
-				.setTabListener(this));		
+				.setTabListener(this));	
+		
+		mViewPager.setAdapter(mAppSectionsPagerAdapter);
 	}
 
 	@Override
@@ -149,49 +152,6 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 
 	}
 
-	private void downloadData(String user_id) {
 
-		user_deal_data = new ArrayList<DealFactory>();
-
-		AsyncHttpClient cassandra_client = new AsyncHttpClient();
-		cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts_by_user/"+user_id,new AsyncHttpResponseHandler() {
-			@Override
-			public void onSuccess(String  response) {
-
-				if(response != null){
-
-					JSONObject jObject;
-					try {
-						jObject = new JSONObject(response);
-
-						Iterator<?> keys = jObject.keys();
-						while(keys.hasNext()){
-
-							String currentTimestamp = (String) keys.next();
-
-							String postString = jObject.getString(currentTimestamp);
-							JSONObject currentPostObject = new JSONObject(postString);
-
-							String image = currentPostObject.getString("image");
-							String desc = currentPostObject.getString("body"); 
-							String price = currentPostObject.getString("price");
-							String location = currentPostObject.getString("location");
-							String user = currentPostObject.getString("user");
-							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 	
-							user_deal_data.add(currFeedObj);
-						}
-						
-					}
-					catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				mViewPager.setAdapter(mAppSectionsPagerAdapter);
-			}
-			
-		});
-
-	}
 
 }

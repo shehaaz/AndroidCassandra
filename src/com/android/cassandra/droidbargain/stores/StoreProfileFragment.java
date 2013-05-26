@@ -1,5 +1,7 @@
 package com.android.cassandra.droidbargain.stores;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,16 +10,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.cassandra.droidbargain.R;
+import com.android.cassandra.droidbargain.feed.FeedActivity;
 
 public class StoreProfileFragment extends Fragment {
 
 	private StoreFactory store;
+	private ArrayList<StoreFactory> store_data;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.store_profile,container, false);
 
-		Bundle bundle = getActivity().getIntent().getExtras();
-		store = (StoreFactory)bundle.getParcelable("THE_STORE");
+		store_data = FeedActivity.store_data;
+		int store_index = (int) getActivity().getIntent().getIntExtra("THE_STORE_INDEX", 0);
+		store = store_data.get(store_index);
 
 		TextView store_title = (TextView) rootView.findViewById(R.id.store_title);
 

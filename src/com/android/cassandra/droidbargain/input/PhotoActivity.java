@@ -316,7 +316,10 @@ public class PhotoActivity extends Activity {
 						@Override
 						public void onSuccess(String response) {
 							Log.d("POST:","Success HTTP PUT to POST ColumnFamily");
-
+							Intent i = new Intent(context, FeedActivity.class);
+							i.putExtra("NEW_POST","new_post");
+							startActivity(i);
+							finish();
 						}
 					});
 
@@ -324,21 +327,16 @@ public class PhotoActivity extends Activity {
 						@Override
 						public void onSuccess(String response) {
 							Log.d("POST:","Success HTTP PUT to POSTS_BY_USER ColumnFamily");
-							Intent i = new Intent(context, FeedActivity.class);
-							i.putExtra("THE_STORE",store);
-							startActivity(i);
-							finish();
 						}
 					});
-
 				} catch (Exception e) {
 					System.out.println("Failed HTTP PUT");
 				} 
 			}
 			break;
 		} 	
-		} 
-	}
+	} 
+}
 
 	/**
 	 * Indicates whether the specified action can be used as an intent. This

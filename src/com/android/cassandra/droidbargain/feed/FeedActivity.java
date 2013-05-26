@@ -91,13 +91,11 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 
 
-		if(!(this.getIntent().hasExtra("THE_STORE"))){
+		if(!(this.getIntent().hasExtra("NEW_POST"))){
 			initializeDialog();
 			downloadStores();
 		}
 		else {
-			Bundle bundle = getIntent().getExtras();
-			StoreFactory store = (StoreFactory)bundle.getParcelable("THE_STORE");
 			initializeDialog();
 			downloadStoreData();
 		}
@@ -269,17 +267,20 @@ public class FeedActivity extends ListActivity implements LocationListener {
 									}
 								}
 							}
+							
 						});
 						store_data.add(newStore);
 					}
+					pDialog.dismiss();
 				}
 				catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+
 		});
-		pDialog.dismiss();
+
 	}
 
 

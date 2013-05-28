@@ -12,12 +12,6 @@ import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
 
 import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.feed.FeedActivity;
-import com.android.cassandra.droidbargain.profile.User;
-import com.android.cassandra.droidbargain.stores.StoreFactory;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -38,11 +32,16 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
+
+import com.android.cassandra.droidbargain.feed.FeedActivity;
+import com.android.cassandra.droidbargain.profile.User;
+import com.android.cassandra.droidbargain.stores.StoreFactory;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 
 public class PhotoActivity extends Activity {

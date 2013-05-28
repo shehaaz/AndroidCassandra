@@ -3,15 +3,15 @@ package com.android.cassandra.droidbargain.profile;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.android.cassandra.droidbargain.R;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.cassandra.droidbargain.R;
-import com.android.cassandra.droidbargain.feed.FeedAdapter;
 import com.android.cassandra.droidbargain.feed.DealFactory;
+import com.android.cassandra.droidbargain.feed.FeedAdapter;
 
 public class MyDealsFragment extends ListFragment {
 

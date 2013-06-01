@@ -53,4 +53,12 @@
         android:text="Posted By: Shehaaz Saif"
         android:textSize="10sp" />
 
+    <ImageButton
+        android:id="@+id/thumbs_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/feed_location"
+        android:layout_alignRight="@+id/feed_image"
+        android:src="@drawable/thumbs_up" />
+
 </RelativeLayout>

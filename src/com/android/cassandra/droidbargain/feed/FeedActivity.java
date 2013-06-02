@@ -199,7 +199,9 @@ public class FeedActivity extends ListActivity implements LocationListener {
 							String price = currentPostObject.getString("price");
 							String location = currentPostObject.getString("location");
 							String user = currentPostObject.getString("user");
-							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 	
+							String storeID = currentPostObject.getString("store_id");
+							String userID = currentPostObject.getString("user_id");
+							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 	
 							user_deal_data.add(currFeedObj);
 						}
 						
@@ -244,7 +246,9 @@ public class FeedActivity extends ListActivity implements LocationListener {
 								String price = currentPostObject.getString("price");
 								String location = currentPostObject.getString("location");
 								String user = currentPostObject.getString("user");
-								DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 
+								String storeID = currentPostObject.getString("store_id");
+								String userID = currentPostObject.getString("user_id");
+								DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
 								feed_data.add(currDealObj);
 							}
 							Collections.sort(feed_data);
@@ -308,7 +312,9 @@ public class FeedActivity extends ListActivity implements LocationListener {
 											String price = currentPostObject.getString("price");
 											String location = currentPostObject.getString("location");
 											String user = currentPostObject.getString("user");
-											DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user); 
+											String storeID = currentPostObject.getString("store_id");
+											String userID = currentPostObject.getString("user_id");
+											DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
 											newStore.addDeal(currDealObj);
 											feed_data.add(currDealObj);
 										}

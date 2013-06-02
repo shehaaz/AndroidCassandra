@@ -320,7 +320,9 @@ public class PhotoActivity extends Activity {
 					jsonParams.put("price", postPrice);
 					jsonParams.put("location", location);
 					jsonParams.put("user", bargain_user.getName());
+					jsonParams.put("user_id", bargain_user.getUser_ID());
 					jsonParams.put("image", base64Image);
+					jsonParams.put("store_id", storeID);
 					StringEntity entity = new StringEntity(jsonParams.toString());
 
 

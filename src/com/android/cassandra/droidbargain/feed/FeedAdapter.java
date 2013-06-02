@@ -1,11 +1,17 @@
 package com.android.cassandra.droidbargain.feed;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import org.apache.http.entity.StringEntity;
+import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,12 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.cassandra.droidbargain.R;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class FeedAdapter extends ArrayAdapter<DealFactory>{
 	
 	Context context;
 	int layoutResourceId;
 	ArrayList<DealFactory> feedFactory;
+	private String timestamp;
+	private Calendar calendar;
 
 	public FeedAdapter(Context context, int textViewResourceId,
 			ArrayList<DealFactory> feed_data) {
@@ -31,6 +41,7 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 		this.context = context;
 		this.layoutResourceId = textViewResourceId;
 		this.feedFactory = feed_data;
+		calendar = Calendar.getInstance();
 	}
 	
 	@Override
@@ -74,6 +85,9 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 		holder.holder_price = deal.getPrice();
 		holder.holder_location = deal.getLocation();
 		holder.holder_name = deal.getUsername();
+		holder.store_id = deal.getStoreID();
+		holder.user_id = deal.getUserID();
+		
 		
 		
 		holder.thumbs_up.setOnClickListener(new OnClickListener() {
@@ -82,8 +96,32 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 			public void onClick(View v) {
 				
 				FeedHolder tempHolder = (FeedHolder) v.getTag();
+				
+				Toast.makeText(context, "Fav'ed Post", Toast.LENGTH_SHORT).show();
  
-				Toast.makeText(context, tempHolder.holder_desc, Toast.LENGTH_SHORT).show();
+				try {
+					AsyncHttpClient client = new AsyncHttpClient();
+					JSONObject jsonParams = new JSONObject();
+					timestamp = String.valueOf(calendar.getTimeInMillis());
+					jsonParams.put("body", tempHolder.holder_desc);
+					jsonParams.put("price", tempHolder.holder_price);
+					jsonParams.put("location", tempHolder.holder_location);
+					jsonParams.put("user", tempHolder.holder_name);
+					jsonParams.put("user_id", tempHolder.user_id);
+					jsonParams.put("image", tempHolder.holder_image);
+					jsonParams.put("store_id", tempHolder.store_id);
+					StringEntity entity = new StringEntity(jsonParams.toString());
+
+
+					client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts_liked_by_user/"+tempHolder.user_id+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
+						@Override
+						public void onSuccess(String response) {
+							Log.d("POST_LIKED_BY_USER:","Success HTTP PUT to POST_LIKED_BY_USER ColumnFamily");
+						}
+					});
+				} catch (Exception e) {
+					System.out.println("Failed HTTP PUT");
+				} 
 			}
 		});
 
@@ -104,6 +142,8 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 		String holder_price;
 		String holder_location;
 		String holder_name;
+		String store_id;
+		String user_id;
 	}
 	
 	

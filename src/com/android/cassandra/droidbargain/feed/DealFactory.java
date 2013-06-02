@@ -12,10 +12,12 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 	private String price;
 	private String location;
 	private String user_name;
+	private String store_id;
+	private String user_id;
 
 
 	public DealFactory(String timeStamp, String image, String desc,
-			String price, String location, String user_name)
+			String price, String location, String user_name, String store_id, String user_id)
 	{
 		this.timeStamp = timeStamp;
 		this.image = image;
@@ -23,6 +25,8 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 		this.price = price;
 		this.location = location;
 		this.user_name = user_name;
+		this.store_id = store_id;
+		this.user_id = user_id;
 	}
 
 	public String getTimeStamp(){
@@ -48,6 +52,15 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 	public String getUsername(){
 		return user_name;
 	}
+	
+	
+	public String getStoreID(){
+		return store_id;
+	}
+	
+	public String getUserID(){
+		return user_id;
+	}
 
 	public DealFactory(Parcel source){
 		timeStamp = source.readString();
@@ -56,6 +69,8 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 		price = source.readString();
 		location = source.readString();
 		user_name = source.readString();
+		store_id = source.readString();
+		user_id = source.readString();
 	}
 
 	@Override
@@ -67,6 +82,8 @@ public class DealFactory implements Parcelable, Comparable<DealFactory> {
 		dest.writeString(price);
 		dest.writeString(location);	
 		dest.writeString(user_name);
+		dest.writeString(store_id);
+		dest.writeString(user_id);
 	}
 
 	public static final Creator<DealFactory> CREATOR = new Creator<DealFactory>() {

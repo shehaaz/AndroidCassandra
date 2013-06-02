@@ -32,6 +32,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 	private static ViewPager mViewPager;
 	private User bargain_user;
 	protected static ArrayList<DealFactory> user_deal_data;
+	protected static ArrayList<DealFactory> user_like_data;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 
 		bargain_user = (User) getIntent().getSerializableExtra("USER_PROFILE");
 		user_deal_data = FeedActivity.user_deal_data;
+		user_like_data = FeedActivity.user_like_data;
 
 
 
@@ -63,6 +65,9 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 		actionBar.addTab(actionBar.newTab()
 				.setText(R.string.title_profile)
 				.setTabListener(this));
+		actionBar.addTab(actionBar.newTab()
+				.setText(R.string.title_liked_deals)
+				.setTabListener(this));	
 		actionBar.addTab(actionBar.newTab()
 				.setText(R.string.my_deals)
 				.setTabListener(this));	
@@ -106,7 +111,7 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 
 	private static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
-		private static final int NUM_SECTIONS = 2;
+		private static final int NUM_SECTIONS = 3;
 
 		public AppSectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -121,6 +126,9 @@ public class Profile extends FragmentActivity implements ActionBar.TabListener {
 				return new ProfileFragment();
 
 			case 1:
+				return new MyFavDealsFragment();
+				
+			case 2:
 				return new MyDealsFragment();
 
 			default:

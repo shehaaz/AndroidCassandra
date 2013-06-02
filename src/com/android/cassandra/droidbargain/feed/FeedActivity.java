@@ -4,6 +4,7 @@ package com.android.cassandra.droidbargain.feed;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -58,12 +59,18 @@ public class FeedActivity extends ListActivity implements LocationListener {
 	private String user_ID;
 	private User bargain_user;
 	public static boolean downloadPhoto = true;
-	
+	private Calendar calendar;
+	private String presentTime;
+	private final int days_from_present = 604800000;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feed);
+
+		calendar = Calendar.getInstance();
+		presentTime = String.valueOf(calendar.getTimeInMillis());
 
 		//Start Facebook Login
 		Session.openActiveSession(this, true, new Session.StatusCallback() {
@@ -172,7 +179,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		pDialog.setCancelable(false);
 		pDialog.show();	
 	}
-	
+
 	private void downloadUserData(String user_id) {
 
 		user_deal_data = new ArrayList<DealFactory>();
@@ -193,29 +200,33 @@ public class FeedActivity extends ListActivity implements LocationListener {
 
 							String currentTimestamp = (String) keys.next();
 
-							String postString = jObject.getString(currentTimestamp);
-							JSONObject currentPostObject = new JSONObject(postString);
+							
 
-							String image = currentPostObject.getString("image");
-							String desc = currentPostObject.getString("body"); 
-							String price = currentPostObject.getString("price");
-							String location = currentPostObject.getString("location");
-							String user = currentPostObject.getString("user");
-							String storeID = currentPostObject.getString("store_id");
-							String userID = currentPostObject.getString("user_id");
-							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 	
-							user_deal_data.add(currFeedObj);
+							if(Double.parseDouble(currentTimestamp) > (Double.parseDouble(presentTime) - days_from_present)){
+								String postString = jObject.getString(currentTimestamp);
+								JSONObject currentPostObject = new JSONObject(postString);
+
+								String image = currentPostObject.getString("image");
+								String desc = currentPostObject.getString("body"); 
+								String price = currentPostObject.getString("price");
+								String location = currentPostObject.getString("location");
+								String user = currentPostObject.getString("user");
+								String storeID = currentPostObject.getString("store_id");
+								String userID = currentPostObject.getString("user_id");
+								DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 	
+								user_deal_data.add(currFeedObj);
+							}
 						}
-						
+
 					}
 					catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				
+
 			}
-			
+
 		});
 
 	}
@@ -236,10 +247,12 @@ public class FeedActivity extends ListActivity implements LocationListener {
 						jObject = new JSONObject(response);
 
 						Iterator<?> keys = jObject.keys();
-						
+
 						while(keys.hasNext()){
 
 							String currentTimestamp = (String) keys.next();
+
+
 
 							String postString = jObject.getString(currentTimestamp);
 							JSONObject currentPostObject = new JSONObject(postString);
@@ -253,20 +266,21 @@ public class FeedActivity extends ListActivity implements LocationListener {
 							String userID = currentPostObject.getString("user_id");
 							DealFactory currFeedObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 	
 							user_like_data.add(currFeedObj);
+
 						}
-						
+
 					}
 					catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				
+
 			}
-			
+
 		});
 	}
-	
+
 	private void downloadStoreData() {
 
 
@@ -287,18 +301,22 @@ public class FeedActivity extends ListActivity implements LocationListener {
 							while(keys.hasNext()){
 								String currentTimestamp = (String) keys.next();
 
-								String postString = jObject.getString(currentTimestamp);
-								JSONObject currentPostObject = new JSONObject(postString);
 
-								String image = currentPostObject.getString("image");
-								String desc = currentPostObject.getString("body"); 
-								String price = currentPostObject.getString("price");
-								String location = currentPostObject.getString("location");
-								String user = currentPostObject.getString("user");
-								String storeID = currentPostObject.getString("store_id");
-								String userID = currentPostObject.getString("user_id");
-								DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
-								feed_data.add(currDealObj);
+								if(Double.parseDouble(currentTimestamp) > (Double.parseDouble(presentTime) - days_from_present)){
+
+									String postString = jObject.getString(currentTimestamp);
+									JSONObject currentPostObject = new JSONObject(postString);
+
+									String image = currentPostObject.getString("image");
+									String desc = currentPostObject.getString("body"); 
+									String price = currentPostObject.getString("price");
+									String location = currentPostObject.getString("location");
+									String user = currentPostObject.getString("user");
+									String storeID = currentPostObject.getString("store_id");
+									String userID = currentPostObject.getString("user_id");
+									DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
+									feed_data.add(currDealObj);
+								}
 							}
 							Collections.sort(feed_data);
 							FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
@@ -353,19 +371,24 @@ public class FeedActivity extends ListActivity implements LocationListener {
 										while(keys.hasNext()){
 											String currentTimestamp = (String) keys.next();
 
-											String postString = jObject.getString(currentTimestamp);
-											JSONObject currentPostObject = new JSONObject(postString);
+									
 
-											String image = currentPostObject.getString("image");
-											String desc = currentPostObject.getString("body"); 
-											String price = currentPostObject.getString("price");
-											String location = currentPostObject.getString("location");
-											String user = currentPostObject.getString("user");
-											String storeID = currentPostObject.getString("store_id");
-											String userID = currentPostObject.getString("user_id");
-											DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
-											newStore.addDeal(currDealObj);
-											feed_data.add(currDealObj);
+											if(Double.parseDouble(currentTimestamp) > (Double.parseDouble(presentTime) - days_from_present)){
+
+												String postString = jObject.getString(currentTimestamp);
+												JSONObject currentPostObject = new JSONObject(postString);
+
+												String image = currentPostObject.getString("image");
+												String desc = currentPostObject.getString("body"); 
+												String price = currentPostObject.getString("price");
+												String location = currentPostObject.getString("location");
+												String user = currentPostObject.getString("user");
+												String storeID = currentPostObject.getString("store_id");
+												String userID = currentPostObject.getString("user_id");
+												DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
+												newStore.addDeal(currDealObj);
+												feed_data.add(currDealObj);
+											}
 										}
 										Collections.sort(feed_data);
 										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
@@ -376,11 +399,11 @@ public class FeedActivity extends ListActivity implements LocationListener {
 									}
 								}
 							}
-							
+
 						});
 						store_data.add(newStore);
 					}
-					
+
 				}
 				catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -403,7 +426,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		super.onActivityResult(requestCode, resultCode, data);
 		Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
 	}
-	
+
 	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
 

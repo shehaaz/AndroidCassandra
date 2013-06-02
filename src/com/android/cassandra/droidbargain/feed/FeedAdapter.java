@@ -111,6 +111,11 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 					jsonParams.put("image", tempHolder.holder_image);
 					jsonParams.put("store_id", tempHolder.store_id);
 					StringEntity entity = new StringEntity(jsonParams.toString());
+					
+					DealFactory newFavedDeal = new DealFactory(
+							timestamp, tempHolder.holder_image, tempHolder.holder_desc, tempHolder.holder_price, 
+							tempHolder.holder_location,tempHolder.holder_name,tempHolder.store_id,tempHolder.user_id); 	
+					FeedActivity.user_like_data.add(newFavedDeal);
 
 
 					client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts_liked_by_user/"+tempHolder.user_id+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {

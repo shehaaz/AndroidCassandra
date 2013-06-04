@@ -27,6 +27,7 @@ public class StoreDealsFragment extends ListFragment {
 		bargain_user = (User) getActivity().getIntent().getSerializableExtra("USER_PROFILE");
 		
 		store_data = FeedActivity.store_data;
+		//The StoreList.java sends the INDEX for where the STORE is contained in the static store_data Arraylist
 		int store_index = (int) getActivity().getIntent().getIntExtra("THE_STORE_INDEX", 0);
 		store = store_data.get(store_index);
 		

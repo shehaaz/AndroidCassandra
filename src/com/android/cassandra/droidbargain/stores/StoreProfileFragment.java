@@ -21,6 +21,7 @@ public class StoreProfileFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.store_profile,container, false);
 
 		store_data = FeedActivity.store_data;
+		//The StoreList.java sends the INDEX for where the store is contained in the static store_data Arraylist
 		int store_index = (int) getActivity().getIntent().getIntExtra("THE_STORE_INDEX", 0);
 		store = store_data.get(store_index);
 

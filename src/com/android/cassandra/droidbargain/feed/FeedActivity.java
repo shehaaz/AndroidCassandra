@@ -47,8 +47,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 public class FeedActivity extends ListActivity implements LocationListener {
 
 	private Context appContext;
-	private ArrayList<DealFactory> feed_data = new ArrayList<DealFactory>();
-	public static ArrayList<StoreFactory> store_data = new ArrayList<StoreFactory>();
+	private static ArrayList<DealFactory> feed_data;
+	public static ArrayList<StoreFactory> store_data;
 	public static ArrayList<DealFactory> user_deal_data;
 	public static ArrayList<DealFactory> user_like_data;
 	public static Bitmap user_image;
@@ -108,16 +108,9 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		//"45.49515,-73.577558";
 		userLatLng = new GetUserLocation(this, mLocationManager).getUserLocation();
 
+		initializeDialog();
+		downloadStores();
 
-
-		if(!(this.getIntent().hasExtra("NEW_POST"))){
-			initializeDialog();
-			downloadStores();
-		}
-		else {
-			initializeDialog();
-			downloadStoreData();
-		}
 	}
 
 
@@ -281,59 +274,11 @@ public class FeedActivity extends ListActivity implements LocationListener {
 		});
 	}
 
-	private void downloadStoreData() {
-
-
-		AsyncHttpClient cassandra_client = new AsyncHttpClient();
-
-		for(StoreFactory store : store_data){
-			cassandra_client.get("http://198.61.177.186:8080/virgil/data/android/posts/"+store.getStoreID(),new AsyncHttpResponseHandler() {
-				@Override
-				public void onSuccess(String  response) {
-
-					if(response != null){
-
-						JSONObject jObject;
-						try {
-							jObject = new JSONObject(response);
-
-							Iterator<?> keys = jObject.keys();
-							while(keys.hasNext()){
-								String currentTimestamp = (String) keys.next();
-
-
-								if(Double.parseDouble(currentTimestamp) > (Double.parseDouble(presentTime) - days_from_present)){
-
-									String postString = jObject.getString(currentTimestamp);
-									JSONObject currentPostObject = new JSONObject(postString);
-
-									String image = currentPostObject.getString("image");
-									String desc = currentPostObject.getString("body"); 
-									String price = currentPostObject.getString("price");
-									String location = currentPostObject.getString("location");
-									String user = currentPostObject.getString("user");
-									String storeID = currentPostObject.getString("store_id");
-									String userID = currentPostObject.getString("user_id");
-									DealFactory currDealObj = new DealFactory(currentTimestamp, image, desc, price, location,user,storeID,userID); 
-									feed_data.add(currDealObj);
-								}
-							}
-							Collections.sort(feed_data);
-							FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data,user_ID);
-							setListAdapter(adapter);
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-
-				}
-			});
-		}
-		pDialog.dismiss();
-	}
 
 	private void downloadStores(){
+		
+		feed_data = new ArrayList<DealFactory>();
+		store_data = new ArrayList<StoreFactory>();
 
 		AsyncHttpClient googlePlaces_client = new AsyncHttpClient();
 

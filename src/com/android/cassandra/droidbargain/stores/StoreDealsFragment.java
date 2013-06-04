@@ -13,14 +13,18 @@ import com.android.cassandra.droidbargain.R;
 import com.android.cassandra.droidbargain.feed.FeedActivity;
 import com.android.cassandra.droidbargain.feed.FeedAdapter;
 import com.android.cassandra.droidbargain.feed.DealFactory;
+import com.android.cassandra.droidbargain.profile.User;
 
 public class StoreDealsFragment extends ListFragment {
 	
 	private StoreFactory store;
 	private ArrayList<StoreFactory> store_data;
+	private User bargain_user;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.activity_feed,container, false);
+		
+		bargain_user = (User) getActivity().getIntent().getSerializableExtra("USER_PROFILE");
 		
 		store_data = FeedActivity.store_data;
 		int store_index = (int) getActivity().getIntent().getIntExtra("THE_STORE_INDEX", 0);
@@ -38,7 +42,7 @@ public class StoreDealsFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		ArrayList<DealFactory> store_deals = store.getDeal_data();
 		Collections.sort(store_deals);
-		FeedAdapter adapter =  new FeedAdapter(getActivity(), R.layout.feed_item, store_deals);
+		FeedAdapter adapter =  new FeedAdapter(getActivity(), R.layout.feed_item, store_deals,bargain_user.getUser_ID());
 		setListAdapter(adapter);
 		setRetainInstance(true);
 	}

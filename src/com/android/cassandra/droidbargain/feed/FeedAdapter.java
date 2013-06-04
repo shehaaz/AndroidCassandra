@@ -33,15 +33,17 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 	ArrayList<DealFactory> feedFactory;
 	private String timestamp;
 	private Calendar calendar;
+	private String bargainUserID;
 
 	public FeedAdapter(Context context, int textViewResourceId,
-			ArrayList<DealFactory> feed_data) {
+			ArrayList<DealFactory> feed_data, String pUserID) {
 		super(context, textViewResourceId, feed_data);
 		
 		this.context = context;
 		this.layoutResourceId = textViewResourceId;
 		this.feedFactory = feed_data;
 		calendar = Calendar.getInstance();
+		bargainUserID = pUserID;
 	}
 	
 	@Override
@@ -118,7 +120,7 @@ public class FeedAdapter extends ArrayAdapter<DealFactory>{
 					FeedActivity.user_like_data.add(newFavedDeal);
 
 
-					client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts_liked_by_user/"+tempHolder.user_id+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
+					client.put(context,"http://198.61.177.186:8080/virgil/data/android/posts_liked_by_user/"+bargainUserID+"/"+timestamp,entity,null,new AsyncHttpResponseHandler() {
 						@Override
 						public void onSuccess(String response) {
 							Log.d("POST_LIKED_BY_USER:","Success HTTP PUT to POST_LIKED_BY_USER ColumnFamily");

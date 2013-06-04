@@ -23,7 +23,6 @@ public class StoreList extends ListActivity {
 
 	private ArrayList<StoreFactory> store_data;
 
-	private StoreFactory store;
 
 	private ProgressDialog pDialog;
 
@@ -90,8 +89,9 @@ public class StoreList extends ListActivity {
 
 		intent = new Intent(this, StoreActivity.class);
 
-		store = store_data.get(position);
 		intent.putExtra("THE_STORE_INDEX", position);
+		
+		intent.putExtra("USER_PROFILE", bargain_user);
 
 		startActivity(intent);
 

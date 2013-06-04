@@ -16,9 +16,13 @@ import com.android.cassandra.droidbargain.feed.FeedAdapter;
 public class MyDealsFragment extends ListFragment {
 
 	ArrayList<DealFactory> myDeals;
+	private User bargain_user;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.activity_feed,container, false);
+		
+		bargain_user = (User) getActivity().getIntent().getSerializableExtra("USER_PROFILE");
+		
 		myDeals = Profile.user_deal_data;
 		
 		if(myDeals != null){
@@ -35,7 +39,7 @@ public class MyDealsFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		FeedAdapter adapter =  new FeedAdapter(getActivity(), R.layout.feed_item, myDeals);
+		FeedAdapter adapter =  new FeedAdapter(getActivity(), R.layout.feed_item, myDeals, bargain_user.getUser_ID());
 		setListAdapter(adapter);
 		setRetainInstance(true);
 	}

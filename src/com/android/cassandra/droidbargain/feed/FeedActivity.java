@@ -319,7 +319,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 								}
 							}
 							Collections.sort(feed_data);
-							FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
+							FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data,user_ID);
 							setListAdapter(adapter);
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -391,7 +391,7 @@ public class FeedActivity extends ListActivity implements LocationListener {
 											}
 										}
 										Collections.sort(feed_data);
-										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data);
+										FeedAdapter adapter = new FeedAdapter(appContext,R.layout.feed_item,feed_data,user_ID);
 										setListAdapter(adapter);
 									} catch (JSONException e) {
 										// TODO Auto-generated catch block
